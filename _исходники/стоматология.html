@@ -1,0 +1,395 @@
+Стоматология 24 часа в Южном Бутово с КТ на месте - Рядом 24
+Круглосуточная стоматология у метро в Южном Бутово: снимем боль ночью без записи, КТ за соседней дверью, план и цена до начала лечения.
+<style>
+/* РАЗДЕЛ «СТОМАТОЛОГИЯ»: главная мысль Давида - врач и КТ в одном месте, круглосуточно.
+   Раскладка: первый экран с вопросом «Что случилось?», снимок КТ листается вместе со страницей,
+   ночной вход, дорожная карта направлений, врачи, цены, где мы. */
+
+/* ---------- Первый экран ---------- */
+.hero{position:relative;min-height:min(64vh,640px);display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 42%}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 2%,color-mix(in srgb,var(--bg) 70%,transparent) 38%,transparent 66%),linear-gradient(0deg,var(--bg) 0%,transparent 34%)}
+.only-day{display:none}
+:root[data-mode="day"] .only-day{display:block}
+:root[data-mode="day"] .only-night{display:none}
+.hero-text{position:relative;z-index:2;width:100%;padding-block:clamp(40px,5vw,70px) clamp(16px,2vw,28px)}
+.hero .crumbs{padding:0 0 26px}
+.hero h1{font-size:clamp(42px,5.4vw,84px);line-height:.98;margin-top:16px;font-weight:200;max-width:11em}
+.hero .lead{margin-top:22px;color:var(--ink);opacity:.86;max-width:44ch}
+
+/* ---------- Что случилось? ---------- */
+.ask{padding-block:clamp(24px,4vw,44px) clamp(44px,6vw,80px)}
+.ask h2{font-size:clamp(25px,2.8vw,36px)}
+.choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:20px;border-top:1px solid var(--line)}
+.choice{padding:18px 16px 20px 0;border-bottom:1px solid var(--line);font:300 clamp(17px,1.5vw,21px)/1.2 var(--display);color:var(--mute);transition:color .25s;position:relative;min-height:84px}
+.choice::after{content:"";position:absolute;left:0;right:16px;top:-1px;height:2px;background:var(--lamp);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.choice:hover{color:var(--ink)}
+.choice[aria-selected="true"]{color:var(--lamp)}
+.choice[aria-selected="true"]::after{transform:scaleX(1)}
+.answer{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto;gap:clamp(20px,4vw,56px);padding-block:32px 8px;align-items:start}
+.answer h3{font-size:clamp(25px,3vw,40px);line-height:1.1}
+.answer ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;color:var(--mute);counter-reset:s}
+.answer li{counter-increment:s;display:grid;grid-template-columns:22px 1fr;font-size:16px}
+.answer li::before{content:counter(s);color:var(--lamp);font-family:var(--display)}
+.act{display:grid;gap:10px;min-width:230px}
+.price{font:300 15px/1.3 var(--body);color:var(--mute);margin-bottom:4px}
+.price b{display:block;font:300 27px/1.2 var(--display);color:var(--ink)}
+
+/* ---------- КТ: снимок листается вместе со страницей ---------- */
+.ct{padding-block:clamp(60px,8vw,110px) 0;background:#060D0E;color:#EDF2EE;--mute:#93A7A6;--line:rgba(237,242,238,.14);--lamp:#E9B56F}
+.ct-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,80px)}
+.ct-stage{position:sticky;top:120px;height:calc(100vh - 150px);max-height:760px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.ct-stage canvas{width:100%;aspect-ratio:1000/560;display:block}
+.ct-info{width:100%;display:flex;justify-content:space-between;color:var(--mute);font-size:12px;letter-spacing:.06em;margin-top:12px;font-variant-numeric:tabular-nums}
+.ct-step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.ct-step h2{font-size:clamp(30px,3.8vw,52px);color:#EDF2EE}
+.ct-step p{color:var(--mute);max-width:44ch;font-size:18px}
+.ct-step:first-child{min-height:60vh}
+
+/* ---------- Кабинет и холл: один экран на две половины ---------- */
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pair .shot{height:clamp(440px,74vh,760px)}
+
+/* ---------- Ночь: три уровня цвета, глаз бежит по оранжевому ---------- */
+.night-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end}
+.night-grid .lead{color:var(--lamp);font-size:clamp(19px,1.8vw,24px);font-family:var(--display);font-weight:300;line-height:1.35}
+.ways{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px}
+.ways li{padding:22px 0;border-bottom:1px solid var(--line)}
+.ways b{display:block;font:300 22px/1.25 var(--display);color:var(--ink)}
+.ways span{display:block;color:var(--dim);font-size:15.5px;margin-top:8px}
+.ways span em{font-style:normal;color:var(--lamp)}
+
+/* ---------- Дорожная карта направлений: линия тянется при прокрутке ---------- */
+.road{position:relative;margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.road-line{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--line)}
+.road-line i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--lamp);transition:width .2s linear}
+.stage{position:relative;padding-top:40px}
+.stage::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);background:var(--bg);transition:border-color .4s,background .4s}
+.stage.lit::before{border-color:var(--lamp);background:var(--lamp)}
+.stage>b{display:block;font:500 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:color .4s}
+.stage.lit>b{color:var(--lamp)}
+.stage .steps{display:grid;gap:10px;margin-top:18px}
+.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;text-decoration:none;padding:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent);transition:border-color .3s,transform .3s}
+.step:hover{border-color:var(--lamp);transform:translateX(4px)}
+.step img{width:72px;height:72px;object-fit:cover;display:block;filter:grayscale(.6) brightness(.7);transition:filter .4s}
+.stage.lit .step img,.step:hover img{filter:none}
+.step h3{font-size:20px}
+.step p{font-size:13.5px;color:var(--mute);margin-top:2px}
+
+/* ---------- Цены: компактно, акцент на названиях услуг ---------- */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:15px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+td:first-child{font:300 20px/1.25 var(--display);color:var(--lamp)}
+td:last-child{text-align:right;white-space:nowrap;font:300 19px var(--display);padding-left:16px;color:var(--ink)}
+td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3px}
+
+@media (max-width:1040px){
+  .choices{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .answer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .act{grid-column:1/-1;grid-template-columns:auto 1fr 1fr;align-items:center}
+  .ways{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .hero{min-height:calc(100svh - 190px)}
+  .hero-media img{object-position:74% 34%}
+  .hero-media::after{background:linear-gradient(0deg,var(--bg) 8%,color-mix(in srgb,var(--bg) 72%,transparent) 48%,transparent 74%)}
+  .hero-text{padding-top:200px}
+  .choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .choice{min-height:68px;padding:14px 10px 16px 0}
+  .answer{grid-template-columns:minmax(0,1fr)}
+  .act{grid-template-columns:minmax(0,1fr)}
+  .ct-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .ct-stage{top:100px;height:auto;padding-block:12px;background:#060D0E;z-index:2}
+  .ct-step,.ct-step:first-child{min-height:62vh;justify-content:flex-start;padding-top:36px}
+  .pair{grid-template-columns:minmax(0,1fr)}
+  .pair .shot{height:72vh}
+  .night-grid{grid-template-columns:minmax(0,1fr)}
+  .ways{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:minmax(0,1fr);gap:8px}
+  .road-line{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .road-line i{width:2px!important;height:var(--h,0%)}
+  .stage{padding:0 0 26px 40px}
+}
+</style>
+<nav class="sub" aria-label="Разделы стоматологии"><div class="wrap" style="display:flex;align-items:center">
+  <a class="here" href="#start">Стоматология</a><a href="#ask">Что случилось</a><a href="#ct">КТ</a><a href="#night">Ночью</a><a href="#doctors">Врачи</a><a href="#prices">Цены</a><a href="#where">Где мы</a>
+  <button class="mode" id="mode" type="button">Показать <span id="modeWord">днём</span></button>
+</div></nav>
+
+<main id="start">
+  <!-- ========== ПЕРВЫЙ ЭКРАН ========== -->
+  <div class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img class="only-night" src="{{К}}assets/img/entry.jpg" alt="">
+      <img class="only-day" src="{{К}}assets/img/entry_day.jpg" alt="">
+    </div>
+    <div class="wrap hero-text">
+      <p class="crumbs"><a href="{{К}}index.html">Главная</a> / Стоматология</p>
+      <span class="tag">Южное Бутово. Второй этаж ТЦ, рядом метро</span>
+      <h1>Врач и КТ<br>в одном месте. <em>Круглосуточно.</em></h1>
+      <p class="lead">Стоматология у дома: от первого приёма до хирургии. Приходите <span class="acc">без записи, даже ночью</span>. Снимок делаем здесь же, ехать никуда не надо.</p>
+    </div>
+  </div>
+  <div class="wrap ask" id="ask">
+    <h2>Что случилось?</h2>
+    <div class="choices" role="tablist" aria-label="Выберите, что случилось" id="choices"></div>
+    <div class="answer" role="tabpanel" id="answer" aria-live="polite"></div>
+  </div>
+
+  <!-- ========== КТ: главная мысль Давида ========== -->
+  <div class="ct" id="ct">
+    <div class="wrap ct-grid">
+      <div class="ct-stage">
+        <canvas id="ctStory" width="1400" height="784" role="img" aria-label="Снимок зубов: при прокрутке идёт полоса сканера, затем врач приближает участок"></canvas>
+        <div class="ct-info"><span id="ctSlice">Снимок: 0%</span><span>Снимок для примера</span></div>
+      </div>
+      <div>
+        <div class="ct-step">
+          <span class="tag">КТ на месте</span>
+          <h2>Обычно на снимок отправляют <em>«куда-то»</em></h2>
+          <p>Ортопед и ортодонт без КТ работать не могут. В небольших клиниках аппарата часто нет, и пациент едет в другой район, а потом возвращается.</p>
+        </div>
+        <div class="ct-step">
+          <h2>Здесь кабинет КТ <em>за соседней дверью</em></h2>
+          <p>Пара шагов от кресла врача. Без отдельной записи, без второй поездки, <span class="acc">в том числе вечером и ночью</span>.</p>
+        </div>
+        <div class="ct-step">
+          <h2>Врач открывает снимок <em>при вас</em></h2>
+          <p>Показывает на экране, что происходит с зубом и костью. Вы видите то же, что и он, и можете спрашивать.</p>
+        </div>
+        <div class="ct-step">
+          <h2>План и цена - <em>на руки</em></h2>
+          <p>Врач распишет лечение и цену на бумаге. Снимок пришлём в телефон или на почту: <span class="acc">он ваш, можно показать любому врачу</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== КАБИНЕТ И ХОЛЛ: один экран, две половины ========== -->
+  <div class="pair">
+    <figure class="shot" style="margin:0" data-parallax>
+      <img src="{{К}}assets/img/cabinet.jpg" alt="Кабинет стоматолога, рядом дверь в кабинет КТ" loading="lazy">
+      <figcaption>
+        <span class="tag">Кабинет</span>
+        <h2 style="margin-top:10px">Кресло врача. <em style="color:#E9B56F">КТ - за стеной.</em></h2>
+        <p>Снимок без поездок: <span class="acc">пара шагов</span> из кабинета.</p>
+      </figcaption>
+    </figure>
+    <figure class="shot" style="margin:0" data-parallax>
+      <img src="{{К}}assets/img/hall.jpg" alt="Холл клиники с диванами, кофе и большим экраном" loading="lazy">
+      <figcaption>
+        <span class="tag">Холл</span>
+        <h2 style="margin-top:10px">Просторно, <em style="color:#E9B56F">как в хорошем отеле</em></h2>
+        <p>Широкие коридоры, большие кабинеты. В холле <span class="acc">диваны, кофе и телевизор</span>, пока ждёте результат или близкого.</p>
+      </figcaption>
+    </figure>
+  </div>
+  <p class="wrap" style="font-size:12px;color:var(--dim);padding-top:10px">Кадры для примера, заменим съёмкой клиники после ремонта.</p>
+
+  <!-- ========== НОЧЬ: как прийти, когда ТЦ закрыт ========== -->
+  <section id="night" class="bgphoto">
+    <div class="bgimg" style="background-image:url({{К}}assets/img/bg_night.jpg)"></div>
+    <div class="wrap night-grid">
+      <div>
+        <span class="tag">Ночью</span>
+        <h2 style="margin-top:14px">Торговый центр закрыт. <em>Клиника открыта.</em></h2>
+      </div>
+      <p class="lead">Самое важное ночью - спокойно дойти. Поэтому у нас отдельный вход, охрана и живой администратор на телефоне.</p>
+    </div>
+    <div class="wrap" style="margin-top:48px">
+      <ul class="ways">
+        <li><b>Вход</b><span><em>С торца здания</em>, вывеска видна с дороги. Главный вход ночью не работает.</span></li>
+        <li><b>Как войти</b><span>Домофон у двери и охрана. <em>Позвоните, если едете</em>: встретим.</span></li>
+        <li><b>Подняться</b><span><em>Лифт на второй этаж</em> работает всю ночь. С коляской и пожилым родителем удобно.</span></li>
+        <li><b>Сколько стоит</b><span><em>Цену скажем до начала.</em> Делаем только то, что нужно сейчас, остальное решим днём.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== ДОРОЖНАЯ КАРТА: начинаем со стоматологии и идём дальше ========== -->
+  <section id="road" class="bgphoto" style="background:var(--bg2)">
+    <div class="bgimg" style="background-image:url({{К}}assets/img/bg_road.jpg)"></div>
+    <div class="wrap">
+      <span class="tag">Один адрес на всю семью</span>
+      <h2 style="margin-top:14px">Начинаем со стоматологии <em>и идём дальше</em></h2>
+      <div class="road" id="roadmap">
+        <div class="road-line"><i id="roadFill"></i></div>
+        <div class="stage"><b>Открытие - первыми</b><div class="steps">
+          <a class="step" href="#ask"><img src="{{К}}assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Круглосуточно, от боли до имплантов</p></div></a>
+          <a class="step" href="{{К}}kt/"><img src="{{К}}assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><p>За соседней дверью от врача</p></div></a>
+        </div></div>
+        <div class="stage"><b>Следующий этап</b><div class="steps">
+          <a class="step" href="{{К}}ginekologiya/"><img src="{{К}}assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><p>С экспертным оборудованием</p></div></a>
+          <a class="step" href="{{К}}urologiya/"><img src="{{К}}assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><p>Приём без долгого ожидания</p></div></a>
+          <a class="step" href="{{К}}uzi/"><img src="{{К}}assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ и анализы</h3><p>Своя лаборатория</p></div></a>
+        </div></div>
+        <div class="stage"><b>В планах</b><div class="steps">
+          <a class="step" href="{{К}}hirurgiya/"><img src="{{К}}assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><p>Своя операционная</p></div></a>
+          <a class="step" href="{{К}}proktologiya/"><img src="{{К}}assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><p>Деликатно, без очередей</p></div></a>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ВРАЧИ: листаются стрелками ========== -->
+  <section id="doctors" data-rail>
+    <div class="wrap">
+      <div class="rail-head"><div><span class="tag">Врачи и услуги</span><h2 style="margin-top:14px">Все стоматологи <em>под одной крышей</em></h2></div>{{СТРЕЛКИ}}</div>
+      <div class="rail">
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_ter.jpg" alt="" loading="lazy"></div><span class="k">Терапевт</span><h3>Лечение зубов</h3><p>Кариес, пульпит, пломбы</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_hir.jpg" alt="" loading="lazy"></div><span class="k">Хирург</span><h3>Удаление, импланты</h3><p>План по КТ до операции</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_ort.jpg" alt="" loading="lazy"></div><span class="k">Ортопед</span><h3>Коронки, протезы</h3><p>Восстановим и самый сложный зуб</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_orto.jpg" alt="" loading="lazy"></div><span class="k">Ортодонт</span><h3>Прикус, брекеты</h3><p>Брекеты и элайнеры</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_kids.jpg" alt="" loading="lazy"></div><span class="k">Детский стоматолог</span><h3>Зубы детей</h3><p>Спокойно и без спешки</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_hyg.jpg" alt="" loading="lazy"></div><span class="k">Гигиенист</span><h3>Чистка зубов</h3><p>Налёт, камень, отбеливание</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_paro.jpg" alt="" loading="lazy"></div><span class="k">Пародонтолог</span><h3>Дёсны</h3><p>Кровоточивость и воспаление</p></div>
+        <div class="card"><div class="ph"><img src="{{К}}assets/img/doc_kt.jpg" alt="" loading="lazy"></div><span class="k">КТ и рентген</span><h3>Снимки на месте</h3><p>Файл сразу в телефоне</p></div>
+      </div>
+      <p style="font-size:12.5px;color:var(--dim);margin-top:16px">Фото врачей - после съёмки в клинике.</p>
+    </div>
+  </section>
+
+  <!-- ========== ЦЕНЫ ========== -->
+  <section id="prices" class="bgphoto" style="background:var(--bg2);padding-block:clamp(56px,7vw,100px)">
+    <div class="bgimg" style="background-image:url({{К}}assets/img/bg_prices.jpg)"></div>
+    <div class="wrap two">
+      <div>
+        <span class="tag">Цены</span>
+        <h2 style="margin-top:14px">Цена понятна <em>до начала</em></h2>
+        <p class="lead" style="margin-top:18px">Цены по ситуациям. Врач называет сумму до того, как начнёт. Цифры справа - пример, поставим ваши.</p>
+        <p style="margin-top:26px"><a class="btn main" href="#call" data-call>Узнать цену по телефону</a></p>
+      </div>
+      <table>
+        <tr><td>Снять острую боль<small>Осмотр, снимок зуба, обезболивание</small></td><td>от 0 000 ₽</td></tr>
+        <tr><td>Приём ночью<small>С 21:00 до 09:00</small></td><td>от 0 000 ₽</td></tr>
+        <tr><td>КТ, сегмент<small>Файл на почту или в телефон</small></td><td>0 000 ₽</td></tr>
+        <tr><td>КТ двух челюстей<small>Для импланта и брекетов</small></td><td>0 000 ₽</td></tr>
+        <tr><td>Удаление зуба<small>Простое</small></td><td>от 0 000 ₽</td></tr>
+        <tr><td>Имплант под ключ<small>С планом по КТ</small></td><td>от 00 000 ₽</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== ГДЕ МЫ И ВОПРОСЫ ========== -->
+  <section id="where">
+    <div class="wrap two">
+      <div>
+        <span class="tag">Где мы</span>
+        <h2 style="margin-top:14px">Близко <em>к дому</em></h2>
+        <p class="lead" style="margin-top:18px">Второй этаж ТЦ у метро. <span class="acc">Ночью - вход с торца.</span> На каждый район сделаем свою страницу для поиска.</p>
+        <div class="map" style="margin-top:28px"><img src="{{К}}assets/img/map.svg" alt="Схема: клиника на втором этаже ТЦ рядом с метро" style="width:100%;height:100%;object-fit:cover;display:block"><a class="btn main sm go" href="#map" data-map>Открыть в Яндекс Картах</a></div>
+        <div class="areas"><a href="#">Южное Бутово</a><a href="#">Северное Бутово</a><a href="#">Новая Москва</a><a href="#">Щербинка</a><a href="#">Коммунарка</a></div>
+      </div>
+      <div>
+        <details open><summary>Правда ли можно без записи ночью?</summary><p>Да, приходите сразу. Если позвоните с дороги, вас встретят и подготовят кабинет.</p></details>
+        <details><summary>КТ работает ночью?</summary><p class="ask-tbd">Уточнить у клиники.</p></details>
+        <details><summary>Принимаете детей?</summary><p class="ask-tbd">Уточнить у клиники, в том числе ночью.</p></details>
+        <details><summary>Можно только сделать снимок?</summary><p>Да. Файл отдаём сразу, с ним можно пойти к своему врачу.</p></details>
+        <details><summary>Есть лифт и парковка?</summary><p>Лифт работает все часы работы клиники. <span class="ask-tbd">Парковку уточнить у ТЦ.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  {{ЛЕНТА_СТАТЕЙ}}
+</main>
+<!--СКРИПТ-->
+<script>
+/* ---------- СЦЕНАРИИ ПЕРВОГО ЭКРАНА: текст ответа на «Что случилось?» ---------- */
+const СЦЕНАРИИ = [
+ {имя:"Болит зуб", заголовок:"Сначала снимаем боль. Приезжайте без записи.", шаги:["Врач смотрит зуб и делает снимок прямо здесь","Обезболиваем и снимаем острую боль","Говорим, что дальше и сколько это стоит"], цена:"Снять боль", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
+ {имя:"Сломался зуб", заголовок:"Сделаем снимок и покажем, что можно спасти.", шаги:["Снимок покажет корень и трещину","Врач предложит варианты: восстановить или заменить","Если важно быть с зубом завтра, сделаем временное решение"], цена:"Осмотр и снимок", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
+ {имя:"Болит у ребёнка", заголовок:"Спокойно примем и всё объясним вам и ребёнку.", шаги:["По телефону подскажем, что сделать по дороге","Врач осмотрит без спешки","Вместе решите, лечить сейчас или снять боль и прийти днём"], цена:"Детский приём", сумма:"уточняется", кнопка:"Позвонить"},
+ {имя:"Нужен снимок КТ", заголовок:"Без записи и поездок. Файл сразу у вас в телефоне.", шаги:["Приходите с направлением или без него","Снимок занимает несколько минут","Отправим файл вам и вашему врачу"], цена:"КТ двух челюстей", сумма:"0 000 ₽", кнопка:"Узнать, когда свободно"},
+ {имя:"Имплант, коронка, брекеты", заголовок:"Сначала КТ, потом точный план и цена.", шаги:["Консультация и КТ в один визит","Врач показывает план на снимке","Вы забираете план с ценой и думаете спокойно"], цена:"Консультация", сумма:"от 0 000 ₽", кнопка:"Записаться"},
+ {имя:"Другой врач", заголовок:"Скоро здесь же гинеколог, уролог, УЗИ и анализы.", шаги:["Стоматология и КТ открываются первыми","Следом гинекология, урология, лаборатория","Оставьте контакт, напишем, когда откроем запись"], цена:"Открытие", сумма:"дата уточняется", кнопка:"Сообщить об открытии"}
+];
+const БЛОК_ВЫБОРА = document.getElementById("choices");
+const БЛОК_ОТВЕТА = document.getElementById("answer");
+function показать_сценарий(номер){
+  const с = СЦЕНАРИИ[номер];
+  [...БЛОК_ВЫБОРА.children].forEach((к,и)=>к.setAttribute("aria-selected", и===номер ? "true":"false"));
+  БЛОК_ОТВЕТА.innerHTML = `<h3>${с.заголовок}</h3><ol>${с.шаги.map(ш=>`<li><span>${ш}</span></li>`).join("")}</ol>
+    <div class="act"><div class="price">${с.цена}<b>${с.сумма}</b></div><a class="btn main" href="#call" data-call>${с.кнопка}</a><a class="btn line" href="#write" data-write>Написать</a></div>`;
+}
+СЦЕНАРИИ.forEach((с,и)=>{
+  const к = document.createElement("button");
+  к.className="choice"; к.type="button"; к.setAttribute("role","tab"); к.id="choice"+и; к.textContent=с.имя;
+  к.addEventListener("click",()=>показать_сценарий(и));
+  БЛОК_ВЫБОРА.append(к);
+});
+показать_сценарий(0);
+
+/* ---------- РЕЖИМ ДЕНЬ/НОЧЬ ----------
+   На настоящем сайте режим ставится по часам. В показе Давиду открываем ночной: это главная мысль. */
+const КОРЕНЬ = document.documentElement;
+document.getElementById("mode").addEventListener("click",()=>{
+  const день = КОРЕНЬ.dataset.mode !== "day";
+  КОРЕНЬ.dataset.mode = день ? "day" : "night";
+  document.getElementById("modeWord").textContent = день ? "ночью" : "днём";
+});
+
+/* ---------- СНИМОК КТ: проявляется при прокрутке и замирает, когда прокрутка остановилась ----------
+   Снимок для примера, не пациента клиники. Сначала полоса сканера идёт по снимку, потом врач приближает
+   участок, потом снимок снова целиком. */
+const ХОЛСТ_КТ=document.getElementById("ctStory"), КИСТЬ=ХОЛСТ_КТ.getContext("2d");
+const ПОДПИСЬ_СРЕЗА=document.getElementById("ctSlice"), БЛОК_КТ=document.getElementById("ct");
+const ПАНОРАМА=new Image();
+ПАНОРАМА.src="../assets/img/pano.jpg";
+const ФОКУС={x:.74,y:.56,ш:.2,в:.36};
+function плавно(a,b,x){const т=Math.max(0,Math.min(1,(x-a)/(b-a)));return т*т*(3-2*т);}
+function вывести_снимок(s){
+  const к=КИСТЬ, Ш=ХОЛСТ_КТ.width, В=ХОЛСТ_КТ.height;
+  к.globalAlpha=1; к.fillStyle="#060D0E"; к.fillRect(0,0,Ш,В);
+  if(!ПАНОРАМА.complete||!ПАНОРАМА.naturalWidth) return;
+  const скан=плавно(.02,.42,s);
+  const зум=плавно(.46,.62,s)*(1-плавно(.8,.94,s));
+  const масштаб=1+зум*1.25;
+  к.save();
+  к.translate(Ш*.5,В*.5); к.scale(масштаб,масштаб);
+  к.translate(-Ш*(.5+(ФОКУС.x-.5)*зум),-В*(.5+(ФОКУС.y-.5)*зум));
+  к.globalAlpha=.13; к.drawImage(ПАНОРАМА,0,0,Ш,В);
+  к.save(); к.beginPath(); к.rect(0,0,Ш*скан,В); к.clip();
+  к.globalAlpha=1; к.drawImage(ПАНОРАМА,0,0,Ш,В); к.restore();
+  к.restore();
+  if(скан>0&&скан<1){ к.fillStyle="#E9B56F"; к.fillRect(Ш*скан-1,0,2,В); }
+  const рамка=плавно(.56,.64,s)*(1-плавно(.76,.84,s));
+  if(рамка>0){
+    к.globalAlpha=рамка; к.strokeStyle="#E9B56F"; к.lineWidth=3;
+    const рш=Ш*ФОКУС.ш*масштаб, рв=В*ФОКУС.в*масштаб, x=(Ш-рш)/2, y=(В-рв)/2, у=36;
+    к.beginPath();
+    [[x,y,1,1],[x+рш,y,-1,1],[x,y+рв,1,-1],[x+рш,y+рв,-1,-1]].forEach(([а,б,в,г])=>{к.moveTo(а+в*у,б);к.lineTo(а,б);к.lineTo(а,б+г*у);});
+    к.stroke(); к.globalAlpha=1;
+  }
+  ПОДПИСЬ_СРЕЗА.textContent = скан<1 ? "Снимок: "+Math.round(скан*100)+"%" : (рамка>.5 ? "Врач показывает участок" : "Снимок готов");
+}
+let текущий=0, цель=0, анимация=null;
+function посчитать_цель(){
+  const r=БЛОК_КТ.getBoundingClientRect(), всего=r.height-innerHeight;
+  цель=Math.max(0,Math.min(1,-r.top/Math.max(1,всего)));
+}
+function шаг(){
+  текущий+=(цель-текущий)*.16;
+  if(Math.abs(цель-текущий)<.0006){текущий=цель; анимация=null;} else анимация=requestAnimationFrame(шаг);
+  вывести_снимок(текущий);
+}
+
+/* ---------- ДОРОЖНАЯ КАРТА: линия тянется при прокрутке, этапы загораются по очереди ---------- */
+const КАРТА=document.getElementById("roadmap"), ЛИНИЯ=document.getElementById("roadFill"), ЭТАПЫ=[...КАРТА.querySelectorAll(".stage")];
+function дорожная_карта(){
+  const р=КАРТА.getBoundingClientRect();
+  const доля=Math.max(0,Math.min(1,(innerHeight*.85-р.top)/(р.height*.9)));
+  ЛИНИЯ.style.width=(доля*100)+"%"; ЛИНИЯ.style.setProperty("--h",(доля*100)+"%"); ЛИНИЯ.style.height=innerWidth<=720?(доля*100)+"%":"";
+  ЭТАПЫ.forEach((э,и)=>э.classList.toggle("lit", доля >= и/ЭТАПЫ.length + .02));
+}
+
+function при_прокрутке(){
+  посчитать_цель();
+  const r=БЛОК_КТ.getBoundingClientRect();
+  if(r.bottom>0 && r.top<innerHeight && !анимация) анимация=requestAnimationFrame(шаг);
+  дорожная_карта();
+}
+addEventListener("scroll",при_прокрутке,{passive:true});
+addEventListener("resize",при_прокрутке);
+ПАНОРАМА.addEventListener("load",()=>вывести_снимок(текущий));
+при_прокрутке();
+</script>

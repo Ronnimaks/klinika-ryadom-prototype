@@ -1,501 +1,188 @@
 <!doctype html>
 <html lang="ru">
-<title>Клиника Рядом</title>
+<head>
 <meta charset="utf-8">
+<title>Рядом 24 - многопрофильная клиника в Южном Бутово, круглосуточно</title>
+<meta name="description" content="Клиника 24 часа у метро в Южном Бутово: стоматология, КТ на месте, скоро гинекология, урология, УЗИ и анализы.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@200;300;400;500&family=Onest:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-/* ПРОТОТИП САЙТА КЛИНИКИ. Название «Рядом», адрес, телефон и цены - примеры, заменяются настоящими.
-   Идея вида: сайт живёт по часам клиники. Ночь - тёмный режим «горит окно», день - холодный фарфор.
-   Раскладка: один длинный кинематографичный показ, вопрос «Что случилось?» на первом экране, снимок КТ листается вместе со страницей. */
-:root{
-  color-scheme:dark;
-  --bg:#0A1517;--bg2:#0F1E21;--bg3:#16292D;--ink:#EDF2EE;--mute:#93A7A6;--line:rgba(237,242,238,.14);
-  --lamp:#E9B56F;--lamp-ink:#16120A;--shade:rgba(10,21,23,.72);
-  --display:"Geologica","Segoe UI",system-ui,sans-serif;--body:"Onest","Segoe UI",system-ui,sans-serif;
-  --wide:1240px;
-}
-:root[data-mode="day"]{
-  color-scheme:light;
-  --bg:#EFF2ED;--bg2:#E5EAE4;--bg3:#D8DFD8;--ink:#0D2226;--mute:#4D6264;--line:rgba(13,34,38,.16);
-  --lamp:#8E5219;--lamp-ink:#FFF8EE;--shade:rgba(239,242,237,.0);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);transition:background .5s,color .5s;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
-h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;letter-spacing:-.022em;text-wrap:balance}
-p{margin:0}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left;padding:0}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
-.wrap{max-width:var(--wide);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-.tag{font:500 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.lead{color:var(--mute);font-size:clamp(17px,1.5vw,20px);max-width:56ch}
-section{padding-block:clamp(72px,10vw,150px)}
-h2{font-size:clamp(34px,5.2vw,72px);line-height:1.04}
+/* ГЛАВНАЯ СТРАНИЦА КЛИНИКИ: коротко о клинике, направления, ночью, статьи, контакты */
+.m-hero{min-height:calc(100svh - 96px);display:flex;align-items:flex-end;padding-block:clamp(60px,8vw,110px) clamp(40px,5vw,70px)}
+.m-hero .bgimg{background-position:65% 40%}
+.m-hero::before{background:linear-gradient(90deg,rgba(10,21,23,.96) 0%,rgba(10,21,23,.78) 45%,rgba(10,21,23,.35) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)!important}
+.m-hero h1{font-size:clamp(44px,6vw,92px);line-height:.98;font-weight:200;max-width:11em}
+.m-hero .lead{margin-top:22px;color:#C9D5D2;max-width:46ch}
+.plus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line)}
+.plus div{padding:18px 18px 0 0}
+.plus b{display:block;font:300 clamp(19px,1.7vw,24px)/1.2 var(--display);color:var(--lamp)}
+.plus span{display:block;color:var(--mute);font-size:14.5px;margin-top:6px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
 
-/* ---------- Отметка «это прототип» ---------- */
-.proto{background:var(--bg3);color:var(--mute);font-size:12.5px;text-align:center;padding:6px 16px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px}
+.tile{position:relative;aspect-ratio:1/1;overflow:hidden;text-decoration:none;color:#EDF2EE;background:var(--bg3)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,14,.1) 30%,rgba(6,12,14,.9))}
+.tile.soon img{filter:grayscale(.7) brightness(.6)}
+.tile:hover img{transform:scale(1.05);filter:none}
+.tile div{position:absolute;z-index:2;left:18px;right:18px;bottom:16px}
+.tile h3{font-size:clamp(20px,1.8vw,26px)}
+.tile small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;color:#A9B9B7}
+.tile.live small{color:#E9B56F}
+.tile.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.tile.big h3{font-size:clamp(30px,3.4vw,48px)}
+.tile.big p{color:#C9D5D2;margin-top:8px;max-width:34ch}
+.tile .go{display:inline-block;margin-top:14px;color:#E9B56F;font-size:14.5px}
 
-/* ---------- Шапка: статус работает всегда на виду ---------- */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:18px;height:62px}
-.logo{font:300 23px/1 var(--display);letter-spacing:-.03em;display:flex;align-items:baseline;gap:7px;text-decoration:none}
-.logo small{font:500 11px/1 var(--body);letter-spacing:.08em;color:var(--lamp)}
-.open{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mute);white-space:nowrap}
-.open i{width:7px;height:7px;border-radius:50%;background:var(--lamp);flex:none}
-.open b{font-weight:500;color:var(--ink)}
-.nav{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:14.5px}
-.nav a{text-decoration:none;color:var(--mute)}
-.nav a:hover{color:var(--ink)}
-.mode{border:1px solid var(--line);border-radius:99px;padding:6px 13px;font-size:13px;white-space:nowrap}
-.phone{font:400 16px var(--display);white-space:nowrap;text-decoration:none;color:var(--ink)!important}
+.night2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.night2 .ph{aspect-ratio:4/3;overflow:hidden}
+.night2 .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pts{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid var(--line)}
+.pts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--mute)}
+.pts b{color:var(--ink);font-weight:500}
 
-/* ---------- Первый экран ---------- */
-.hero{position:relative;min-height:min(60vh,600px);display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
-.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 38%}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 2%,color-mix(in srgb,var(--bg) 72%,transparent) 38%,transparent 66%),linear-gradient(0deg,var(--bg) 0%,transparent 34%)}
-.only-day{display:none}
-:root[data-mode="day"] .only-day{display:block}
-:root[data-mode="day"] .only-night{display:none}
-.hero-text{position:relative;z-index:2;width:100%;padding-block:clamp(50px,6vw,84px) clamp(16px,2vw,28px)}
-.hero h1{font-size:clamp(42px,5.4vw,84px);line-height:.98;margin-top:16px;font-weight:200;max-width:11em}
-.hero h1 em{font-style:normal;color:var(--lamp)}
-.hero .lead{margin-top:22px;color:var(--ink);opacity:.82;max-width:44ch}
-
-/* ---------- Что случилось? ---------- */
-.ask{padding-block:clamp(24px,4vw,44px) clamp(44px,6vw,80px)}
-.ask h2{font-size:clamp(25px,2.8vw,36px)}
-.choices{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:20px;border-top:1px solid var(--line)}
-.choice{padding:18px 16px 20px 0;border-bottom:1px solid var(--line);font:300 clamp(17px,1.5vw,21px)/1.2 var(--display);color:var(--mute);transition:color .25s;position:relative;min-height:84px}
-.choice::after{content:"";position:absolute;left:0;right:16px;top:-1px;height:2px;background:var(--lamp);transform:scaleX(0);transform-origin:left;transition:transform .35s}
-.choice:hover{color:var(--ink)}
-.choice[aria-selected="true"]{color:var(--ink)}
-.choice[aria-selected="true"]::after{transform:scaleX(1)}
-.answer{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto;gap:clamp(20px,4vw,56px);padding-block:32px 8px;align-items:start}
-.answer h3{font-size:clamp(25px,3vw,40px);line-height:1.1}
-.answer ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;color:var(--mute);counter-reset:s}
-.answer li{counter-increment:s;display:grid;grid-template-columns:22px 1fr;font-size:16px}
-.answer li::before{content:counter(s);color:var(--lamp);font-family:var(--display)}
-.act{display:grid;gap:10px;min-width:230px}
-.price{font:300 15px/1.3 var(--body);color:var(--mute);margin-bottom:4px}
-.price b{display:block;font:300 27px/1.2 var(--display);color:var(--ink)}
-.btn{display:block;text-align:center;padding:15px 22px;border-radius:3px;font-weight:500;font-size:16px;text-decoration:none}
-.btn.main{background:var(--lamp);color:var(--lamp-ink)}
-.btn.line{border:1px solid var(--line)}
-.btn:hover{filter:brightness(1.08)}
-
-/* ---------- Кадры на весь экран ---------- */
-.shot{position:relative;overflow:hidden;background:var(--bg2)}
-.shot img{width:100%;height:118%;object-fit:cover;display:block;will-change:transform}
-.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,12,14,.82))}
-.shot figcaption{position:absolute;z-index:2;left:0;right:0;bottom:0;color:#EDF2EE;padding-bottom:clamp(24px,4vw,56px)}
-.shot h2{color:#EDF2EE}
-.shot p{color:#C9D5D2;max-width:56ch;margin-top:14px}
-.note{font-size:12px;color:#A9B9B7;margin-top:12px;display:block}
-.hall{height:clamp(480px,82vh,860px)}
-
-/* ---------- КТ: снимок на месте, листается вместе со страницей ---------- */
-.ct{padding-block:clamp(60px,8vw,110px) 0;background:#060D0E;color:#EDF2EE;--mute:#93A7A6;--line:rgba(237,242,238,.14);--lamp:#E9B56F}
-.ct-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,5vw,80px)}
-.ct-stage{position:sticky;top:90px;height:calc(100vh - 120px);max-height:760px;display:flex;flex-direction:column;justify-content:center;align-items:center}
-.ct-stage canvas{width:100%;aspect-ratio:1000/560;display:block}
-.ct-info{width:100%;display:flex;justify-content:space-between;color:var(--mute);font-size:12px;letter-spacing:.06em;margin-top:12px;font-variant-numeric:tabular-nums}
-.ct-step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.ct-step h2{font-size:clamp(32px,4.2vw,58px);color:#EDF2EE}
-.ct-step p{color:var(--mute);max-width:44ch;font-size:18px}
-.ct-step:first-child{min-height:60vh}
-
-/* ---------- Ночь: как попасть ---------- */
-.night-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end}
-.ways{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.ways li{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
-.ways b{font:300 19px/1.25 var(--display)}
-.ways span{color:var(--mute);font-size:16px}
-.entry{height:clamp(420px,70vh,760px)}
-
-/* ---------- Направления: один адрес на семью ---------- */
-.dirs{margin-top:44px;border-top:1px solid var(--line)}
-.dir{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:clamp(14px,1.8vw,24px) 0;border-bottom:1px solid var(--line)}
-.dir h3{font-size:clamp(28px,4.4vw,60px);line-height:1.08}
-.dir.soon h3{color:var(--mute)}
-.state{font-size:13px;color:var(--mute);white-space:nowrap}
-.state.now{color:var(--lamp)}
-
-/* ---------- Цены и обещания ---------- */
-.two{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,90px)}
-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-td{padding:17px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
-td:last-child{text-align:right;white-space:nowrap;font:300 20px var(--display);padding-left:16px}
-td small{display:block;color:var(--mute);font-size:14px}
-.promises{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px);margin-top:44px}
-.promises h3{font-size:22px;line-height:1.2;margin-bottom:10px}
-.promises p{color:var(--mute);font-size:16px}
-
-/* ---------- Врачи: фото после съёмки ---------- */
-.docs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px}
-.doc div{aspect-ratio:4/5;background:linear-gradient(160deg,var(--bg3),var(--bg2));display:flex;align-items:flex-end;padding:12px;color:var(--mute);font-size:13px}
-.doc h3{font-size:20px;margin-top:12px}
-.doc p{color:var(--mute);font-size:14.5px}
-
-/* ---------- Районы и вопросы ---------- */
-.areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.areas span{border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-size:15px}
-details{border-bottom:1px solid var(--line);padding:18px 0}
-summary{cursor:pointer;font:300 21px/1.3 var(--display);list-style:none;display:flex;justify-content:space-between;gap:16px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";color:var(--lamp)}
-details[open] summary::after{content:"-"}
-details p{color:var(--mute);margin-top:10px;max-width:60ch}
-.ask-tbd{color:var(--lamp);font-size:13px}
-
-/* ---------- Подвал ---------- */
-footer{border-top:1px solid var(--line);padding-block:44px 120px;color:var(--mute);font-size:14px}
-.foot{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.warn{margin-top:30px;font:300 clamp(15px,1.7vw,21px)/1.3 var(--display);letter-spacing:.02em;text-transform:uppercase;color:var(--mute)}
-
-/* ---------- Нижняя панель на телефоне: ночью человек не ищет кнопку ---------- */
-.bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:55;gap:8px;background:var(--bg);border-top:1px solid var(--line);padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
-.bar .btn{flex:1;padding:13px}
-.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:3px;font-size:14px;z-index:70;max-width:calc(100vw - 32px);text-align:center}
-
-/* ---------- Телефон и планшет ---------- */
-@media (max-width:1040px){
-  .nav a:not(.phone){display:none}
-  .choices{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .answer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .act{grid-column:1/-1;grid-template-columns:auto 1fr 1fr;align-items:center}
-}
-@media (max-width:720px){
-  body{font-size:16px}
-  .phone{display:none}
-  .open{font-size:13px}
-  .mode{padding:6px 10px;font-size:12px}
-  .m-long{display:none}
-  .logo{font-size:21px}
-  .top .wrap{gap:10px;height:56px}
-  .hero{min-height:calc(100svh - 150px)}
-  .hero-media img{object-position:74% 30%}
-  .hero-media::after{background:linear-gradient(0deg,var(--bg) 8%,color-mix(in srgb,var(--bg) 72%,transparent) 48%,transparent 74%)}
-  .hero-text{padding-top:220px}
-  .choices{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .choice{min-height:68px;padding:14px 10px 16px 0}
-  .answer{grid-template-columns:minmax(0,1fr)}
-  .act{grid-template-columns:minmax(0,1fr)}
-  .ct-grid{grid-template-columns:minmax(0,1fr);gap:0}
-  .ct-stage{top:56px;height:auto;padding-block:12px;background:#060D0E;z-index:2}
-    .ct-step,.ct-step:first-child{min-height:62vh;justify-content:flex-start;padding-top:36px}
-  .night-grid,.two{grid-template-columns:minmax(0,1fr)}
-  .promises{grid-template-columns:minmax(0,1fr)}
-  .docs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .foot{grid-template-columns:minmax(0,1fr)}
-  .ways li{grid-template-columns:minmax(0,1fr);gap:4px}
-  .bar{display:flex}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+.form{display:grid;gap:10px;margin-top:26px;max-width:460px}
+.form input{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:3px;padding:14px 16px}
+.form input:focus{border-color:var(--lamp);outline:none}
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plus{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
 </style>
-
+</head>
+<body>
 <div class="proto">Прототип. Название, адрес, телефон, цены и фото - примеры, заменим настоящими.</div>
-
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#start">рядом <small>24</small></a>
-    <div class="open"><i></i><b>Открыто сейчас</b> <span id="clock"></span></div>
-    <nav class="nav" aria-label="Разделы">
-      <a href="#ct">КТ</a><a href="#night">Ночью</a><a href="#dirs">Врачи</a><a href="#prices">Цены</a>
+    <a class="logo" href="index.html" aria-label="Рядом 24, на главную">рядом <b>24</b></a>
+    <div class="open"><i></i><b>Открыто</b> <span>сейчас <span id="clock"></span></span></div>
+    <nav class="nav" aria-label="Разделы сайта">
+      <div class="drop"><button type="button" aria-expanded="false">Направления</button><div class="drop-menu"><a href="stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="kt/" class="live">КТ и рентген<small>работает</small></a><a href="ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="urologiya/" class="">Урология<small>скоро открытие</small></a><a href="uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="proktologiya/" class="">Проктология<small>в планах</small></a></div></div>
+      <a href="stati/">Статьи</a>
+      <a href="stomatologiya/#prices">Цены</a>
+      <a href="index.html#contacts">Контакты</a>
       <a class="phone" href="#call" data-call>+7 (495) 000-00-00</a>
-      <button class="mode" id="mode" type="button"><span class="m-long">Показать </span><span id="modeWord">днём</span></button>
+      <a class="btn main sm" href="#book" data-book>Записаться</a>
     </nav>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><i></i></button>
   </div>
 </header>
+<div class="mobile-menu">
+  <span class="tag">Направления</span><a href="stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="kt/" class="live">КТ и рентген<small>работает</small></a><a href="ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="urologiya/" class="">Урология<small>скоро открытие</small></a><a href="uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="proktologiya/" class="">Проктология<small>в планах</small></a>
+  <span class="tag">Клиника</span>
+  <a href="stati/">Статьи</a><a href="stomatologiya/#prices">Цены</a><a href="index.html#contacts">Контакты</a>
+  <a href="#call" data-call>+7 (495) 000-00-00</a>
+</div>
 
-<main id="start">
-  <!-- ========== ПЕРВЫЙ ЭКРАН ========== -->
-  <div class="hero">
-    <div class="hero-media" aria-hidden="true">
-      <img class="only-night" src="assets/entry.jpg" alt="">
-      <img class="only-day" src="assets/entry_day.jpg" alt="">
-    </div>
-    <div class="wrap hero-text">
-      <span class="tag">Южное Бутово. Второй этаж ТЦ, рядом метро</span>
-      <h1>Врач и КТ<br>в одном месте. <em>Круглосуточно.</em></h1>
-      <p class="lead">Стоматология у дома: от первого приёма до хирургии. Приходите без записи, даже ночью. Снимок делаем здесь же, ехать никуда не надо.</p>
-    </div>
-  </div>
-  <div class="wrap ask">
-    <h2>Что случилось?</h2>
-    <div class="choices" role="tablist" aria-label="Выберите, что случилось" id="choices"></div>
-    <div class="answer" role="tabpanel" id="answer" aria-live="polite"></div>
-  </div>
-
-  <!-- ========== КТ: главная мысль Давида ========== -->
-  <div class="ct" id="ct">
-    <div class="wrap ct-grid">
-      <div class="ct-stage">
-        <canvas id="ctStory" width="1000" height="560" role="img" aria-label="Снимок зубов: при прокрутке идёт полоса сканера, затем врач приближает участок"></canvas>
-        <div class="ct-info"><span id="ctSlice">Снимок: 0%</span><span>Снимок для примера</span></div>
-      </div>
-      <div>
-        <div class="ct-step">
-          <span class="tag">КТ на месте</span>
-          <h2>Обычно на снимок отправляют «куда-то»</h2>
-          <p>Ортопед и ортодонт без КТ работать не могут. В небольших клиниках аппарата часто нет, и пациент едет в другой район, а потом возвращается.</p>
-        </div>
-        <div class="ct-step">
-          <h2>Здесь кабинет КТ за соседней дверью</h2>
-          <p>Пара шагов от кресла врача. Без отдельной записи, без второй поездки, в том числе вечером и ночью.</p>
-        </div>
-        <div class="ct-step">
-          <h2>Врач открывает снимок при вас</h2>
-          <p>Показывает на экране, что происходит с зубом и костью. Вы видите то же, что и он, и можете спрашивать.</p>
-        </div>
-        <div class="ct-step">
-          <h2>Вы уходите с планом и ценой</h2>
-          <p>План лечения письменно. Файл снимка в телефон или на почту. Лечиться можно у нас, а снимок можно забрать и своему врачу.</p>
-        </div>
-      </div>
+<main>
+<!-- ========== ПЕРВЫЙ ЭКРАН: клиника и её преимущества ========== -->
+<section class="bgphoto m-hero">
+  <div class="bgimg" style="background-image:url(assets/img/main_hero.jpg)"></div>
+  <div class="wrap">
+    <span class="tag">Южное Бутово · второй этаж ТЦ · у метро</span>
+    <h1 style="margin-top:18px">Клиника у дома. <em>Открыта 24 часа.</em></h1>
+    <p class="lead">Многопрофильная клиника: начинаем со стоматологии и КТ, следом гинекология, урология, УЗИ и анализы. Приходите без записи, <span class="acc">даже ночью</span>.</p>
+    <div class="acts"><a class="btn main" href="#call" data-call>Позвонить</a><a class="btn line" href="#book" data-book>Записаться</a><a class="btn line" href="#write" data-write>Написать в чат</a></div>
+    <div class="plus">
+      <div><b>Стоматология 24/7</b><span>Снимем боль в любое время</span></div>
+      <div><b>КТ на месте</b><span>Снимок за дверью от врача</span></div>
+      <div><b>Ночью - свой вход</b><span>С торца здания, охрана</span></div>
+      <div><b>Всё в одном месте</b><span>Врачи для всей семьи</span></div>
     </div>
   </div>
+</section>
 
-  <figure class="shot hall" style="margin:0" data-parallax>
-    <img src="assets/cabinet.jpg" alt="Кабинет стоматолога, за стеклом кабинет КТ" loading="lazy">
-    <figcaption><div class="wrap">
-      <h2>Кресло врача. За стеклом - КТ.</h2>
-      <span class="note">Кадр для примера, заменим съёмкой клиники после ремонта</span>
-    </div></figcaption>
-  </figure>
-
-  <!-- ========== НОЧЬ: как прийти, когда ТЦ закрыт ========== -->
-  <section id="night">
-    <div class="wrap night-grid">
-      <div>
-        <span class="tag">Ночью</span>
-        <h2 style="margin-top:14px">Торговый центр закрыт. Клиника открыта.</h2>
-      </div>
-      <p class="lead">Самое важное ночью - спокойно дойти. Поэтому у нас отдельный вход, охрана и живой администратор на телефоне.</p>
+<!-- ========== НАПРАВЛЕНИЯ: каждое - своя страница ========== -->
+<section id="napravleniya">
+  <div class="wrap">
+    <span class="tag">Направления</span>
+    <h2 style="margin-top:14px">Один адрес <em>для всей семьи</em></h2>
+    <div class="tiles">
+      <a class="tile big live rise" href="stomatologiya/"><img src="assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Лечение, удаление, импланты, брекеты. Круглосуточно, с КТ за соседней дверью.</p><small>работает</small><span class="go">Перейти в раздел →</span></div></a>
+      <a class="tile live rise" href="kt/"><img src="assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><small>работает</small></div></a>
+      <a class="tile soon rise" href="ginekologiya/"><img src="assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="urologiya/"><img src="assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="uzi/"><img src="assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="laboratoriya/"><img src="assets/img/dir_lab.jpg" alt=""><div><h3>Анализы</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="hirurgiya/"><img src="assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><small>в планах</small></div></a>
+      <a class="tile soon rise" href="proktologiya/"><img src="assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><small>в планах</small></div></a>
     </div>
-    <div class="wrap" style="margin-top:40px">
-      <ul class="ways">
-        <li><b>Вход</b><span>С торца здания, вывеска видна с дороги. Главный вход ночью не работает.</span></li>
-        <li><b>Как войти</b><span>Домофон у двери и охрана. Позвоните, если едете: встретим.</span></li>
-        <li><b>Подняться</b><span>Лифт на второй этаж работает всю ночь. С коляской и пожилым родителем удобно.</span></li>
-        <li><b>Сколько стоит</b><span>Цену ночного приёма скажем до начала. Делаем только то, что нужно сейчас, остальное решим днём.</span></li>
+  </div>
+</section>
+
+<!-- ========== НОЧЬЮ: коротко, подробно - в разделе стоматологии ========== -->
+<section class="bgphoto" style="background:var(--bg2)">
+  <div class="bgimg" style="background-image:url(assets/img/bg_night.jpg)"></div>
+  <div class="wrap night2">
+    <div class="ph rise"><img src="assets/img/entry.jpg" alt="Вход в клинику ночью, с торца здания" loading="lazy"></div>
+    <div>
+      <span class="tag">Ночью</span>
+      <h2 style="margin-top:14px">Торговый центр закрыт. <em>Клиника открыта.</em></h2>
+      <ul class="pts">
+        <li><b>Отдельный вход</b> с торца здания, вывеска видна с дороги</li>
+        <li><b>Охрана и живой администратор</b> на телефоне всю ночь</li>
+        <li><b>Цену скажем до начала.</b> Ночью делаем только нужное сейчас</li>
       </ul>
+      <p style="margin-top:26px"><a class="btn line" href="stomatologiya/#night">Как пройти ночью</a></p>
     </div>
-  </section>
-  <!-- ========== СЕРВИС: холл, диваны, кофе ========== -->
-  <figure class="shot hall" style="margin:0" data-parallax>
-    <img src="assets/hall.jpg" alt="Холл клиники с диванами, кофе и большим экраном" loading="lazy">
-    <figcaption><div class="wrap">
-      <h2>Просторно, как в хорошем отеле</h2>
-      <p>Широкие коридоры, большие кабинеты. В холле диваны, кофе и телевизор, пока ждёте результат или близкого.</p>
-      <span class="note">Кадр для примера, заменим съёмкой клиники после ремонта</span>
-    </div></figcaption>
-  </figure>
+  </div>
+</section>
 
-  <!-- ========== НАПРАВЛЕНИЯ ========== -->
-  <section id="dirs">
-    <div class="wrap">
-      <span class="tag">Один адрес на всю семью</span>
-      <h2 style="margin-top:14px">Начинаем со стоматологии и идём дальше</h2>
-      <div class="dirs">
-        <div class="dir"><h3>Стоматология</h3><span class="state now">Открытие - первым</span></div>
-        <div class="dir"><h3>КТ и диагностика</h3><span class="state now">Открытие - первым</span></div>
-        <div class="dir soon"><h3>Гинекология</h3><span class="state">Следующий этап</span></div>
-        <div class="dir soon"><h3>Урология</h3><span class="state">Следующий этап</span></div>
-        <div class="dir soon"><h3>УЗИ и лаборатория</h3><span class="state">Следующий этап</span></div>
-        <div class="dir soon"><h3>Хирургия</h3><span class="state">В планах</span></div>
-      </div>
-      <div class="docs">
-        <div class="doc"><div>Фото после съёмки</div><h3>Хирург</h3><p>Удаление, имплантация</p></div>
-        <div class="doc"><div>Фото после съёмки</div><h3>Ортопед</h3><p>Коронки, протезы</p></div>
-        <div class="doc"><div>Фото после съёмки</div><h3>Ортодонт</h3><p>Прикус, брекеты</p></div>
-        <div class="doc"><div>Фото после съёмки</div><h3>Терапевт</h3><p>Лечение зубов</p></div>
-      </div>
-    </div>
-  </section>
+<!-- ========== СТАТЬИ: лента, каждая статья - своя страница ========== -->
+<section id="stati" data-rail>
+  <div class="wrap">
+    <div class="rail-head"><div><span class="tag">Статьи врачей</span><h2 style="margin-top:14px">Свежие статьи</h2></div><div class="arrows"><button type="button" data-prev aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-next aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+    <div class="rail"><a class="card post" href="stati/bolit-zub-nochyu/"><div class="ph"><img src="assets/img/post_night.jpg" alt="" loading="lazy"></div>
+      <time data-ago="0" data-new></time><h3>Болит зуб ночью: что сделать до приёма врача</h3><p>Почему ночью боль сильнее, что поможет дотянуть до кресла и когда ехать сразу.</p></a><a class="card post" href="stati/kt-pered-implantom/"><div class="ph"><img src="assets/img/post_kt.jpg" alt="" loading="lazy"></div>
+      <time data-ago="2"></time><h3>Зачем делать КТ перед имплантом</h3><p>Чем объёмный снимок отличается от обычного и почему без него врач работает вслепую.</p></a><a class="card post" href="stati/rebenok-bolit-zub/"><div class="ph"><img src="assets/img/post_child.jpg" alt="" loading="lazy"></div>
+      <time data-ago="4"></time><h3>У ребёнка болит зуб: как помочь и когда к врачу</h3><p>Что сделать дома, какие признаки опасны и как подготовить ребёнка к приёму.</p></a><a class="card post" href="stati/slomalsya-zub/"><div class="ph"><img src="assets/img/post_broken.jpg" alt="" loading="lazy"></div>
+      <time data-ago="6"></time><h3>Сломался зуб: что делать в первые часы</h3><p>Как сохранить отколотый кусок, чем закрыть острый край и можно ли спасти зуб.</p></a><a class="card post" href="stati/boyus-stomatologa/"><div class="ph"><img src="assets/img/post_calm.jpg" alt="" loading="lazy"></div>
+      <time data-ago="9"></time><h3>Боюсь стоматолога: как лечиться спокойно</h3><p>Страх врача - частая причина запущенных зубов. Что помогает его пережить.</p></a></div>
+    <p style="margin-top:28px"><a class="btn line" href="stati/">Все статьи</a></p>
+  </div>
+</section>
 
-  <!-- ========== ЦЕНЫ И ОБЕЩАНИЯ ========== -->
-  <section id="prices" style="background:var(--bg2)">
-    <div class="wrap two">
-      <div>
-        <span class="tag">Цены</span>
-        <h2 style="margin-top:14px">Цена понятна до начала</h2>
-        <p class="lead" style="margin-top:18px">Цены по ситуациям. Многопрофильная клиника держит их спокойнее, чем узкая. Цифры справа - пример, поставим ваши.</p>
-      </div>
-      <table>
-        <tr><td>Снять острую боль<small>Осмотр, снимок зуба, обезболивание</small></td><td>от 0 000 ₽</td></tr>
-        <tr><td>Приём ночью<small>С 21:00 до 09:00</small></td><td>от 0 000 ₽</td></tr>
-        <tr><td>КТ, сегмент<small>Файл на почту или в телефон</small></td><td>0 000 ₽</td></tr>
-        <tr><td>КТ двух челюстей<small>Для импланта и брекетов</small></td><td>0 000 ₽</td></tr>
-        <tr><td>Удаление зуба<small>Простое</small></td><td>от 0 000 ₽</td></tr>
-        <tr><td>Имплант под ключ<small>С планом по КТ</small></td><td>от 00 000 ₽</td></tr>
-      </table>
-    </div>
-    <div class="wrap">
-      <div class="promises">
-        <div><h3>Сначала слушаем</h3><p>Боитесь? Давно не были? Скажите сразу. Ругать не будем, начнём с того, что беспокоит.</p></div>
-        <div><h3>Показываем на снимке</h3><p>Вы видите проблему и варианты лечения. Дорогой и простой называем оба.</p></div>
-        <div><h3>Можно подумать</h3><p>План с ценой забираете с собой. Никто не торопит решать в кресле.</p></div>
+<!-- ========== КОНТАКТЫ И КАРТА ========== -->
+<section id="contacts" style="background:var(--bg2)">
+  <div class="wrap two">
+    <div>
+      <span class="tag">Контакты</span>
+      <h2 style="margin-top:14px">Близко <em>к дому</em></h2>
+      <p class="lead" style="margin-top:18px">Москва, Южное Бутово, второй этаж ТЦ у метро. <span class="hi">Днём</span> - через главный вход, <span class="acc">ночью - с торца здания</span>.</p>
+      <p style="margin-top:20px;font:300 26px var(--display)"><a href="#call" data-call style="text-decoration:none">+7 (495) 000-00-00</a></p>
+      <div class="form">
+        <input type="text" placeholder="Как к вам обращаться" aria-label="Имя">
+        <input type="tel" placeholder="Телефон" aria-label="Телефон">
+        <a class="btn main" href="#book" data-book>Перезвоните мне</a>
       </div>
     </div>
-  </section>
-
-  <!-- ========== РАЙОНЫ И ВОПРОСЫ ========== -->
-  <section>
-    <div class="wrap two">
-      <div>
-        <span class="tag">Где мы</span>
-        <h2 style="margin-top:14px">Близко к дому</h2>
-        <p class="lead" style="margin-top:18px">Адрес ТЦ, карта и маршрут от метро появятся здесь. На каждый район сделаем свою страницу для поиска.</p>
-        <div class="areas"><span>Южное Бутово</span><span>Северное Бутово</span><span>Новая Москва</span><span>Щербинка</span><span>Коммунарка</span></div>
-      </div>
-      <div>
-        <details open><summary>Правда ли можно без записи ночью?</summary><p>Да, приходите сразу. Если позвоните с дороги, вас встретят и подготовят кабинет.</p></details>
-        <details><summary>КТ работает ночью?</summary><p class="ask-tbd">Уточнить у клиники.</p></details>
-        <details><summary>Принимаете детей?</summary><p class="ask-tbd">Уточнить у клиники, в том числе ночью.</p></details>
-        <details><summary>Можно только сделать снимок?</summary><p>Да. Файл отдаём сразу, с ним можно пойти к своему врачу.</p></details>
-        <details><summary>Есть лифт и парковка?</summary><p>Лифт работает все часы работы клиники. <span class="ask-tbd">Парковку уточнить у ТЦ.</span></p></details>
-      </div>
+    <div>
+      <div class="map"><img src="assets/img/map.svg" alt="Схема: клиника на втором этаже ТЦ рядом с метро" style="width:100%;height:100%;object-fit:cover;display:block"><a class="btn main sm go" href="#map" data-map>Открыть в Яндекс Картах</a></div>
+      <p style="font-size:12.5px;color:var(--dim);margin-top:10px">Схема для примера. Настоящий адрес и маршрут - после выбора ТЦ.</p>
+      <div class="areas"><a href="#">Южное Бутово</a><a href="#">Северное Бутово</a><a href="#">Новая Москва</a><a href="#">Щербинка</a><a href="#">Коммунарка</a></div>
     </div>
-  </section>
+  </div>
+</section>
 </main>
-
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div>Клиника «Рядом», рабочее название<br>Лицензия: номер после выдачи на новый адрес</div>
-      <div>Москва, Южное Бутово, адрес ТЦ уточняется<br>Круглосуточно, без выходных</div>
-      <div>+7 (495) 000-00-00<br>Telegram, MAX</div>
+      <div><a class="logo" href="index.html">рядом <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
+      <div><h4>Направления</h4><a href="stomatologiya/">Стоматология</a><a href="kt/">КТ и рентген</a><a href="ginekologiya/">Гинекология</a><a href="urologiya/">Урология</a><a href="uzi/">УЗИ</a><a href="laboratoriya/">Анализы</a></div>
+      <div><h4>Статьи</h4><a href="stati/bolit-zub-nochyu/">Болит зуб ночью</a><a href="stati/kt-pered-implantom/">Зачем делать КТ перед имплантом</a><a href="stati/rebenok-bolit-zub/">У ребёнка болит зуб</a><a href="stati/slomalsya-zub/">Сломался зуб</a><a href="stati/">Все статьи</a></div>
+      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Telegram, MAX</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
     </div>
     <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
   </div>
 </footer>
-
 <div class="bar">
   <a class="btn main" href="#call" data-call>Позвонить</a>
   <a class="btn line" href="#write" data-write>Написать</a>
 </div>
+<script src="assets/site.js"></script>
 
-<script>
-/* ---------- СЦЕНАРИИ ПЕРВОГО ЭКРАНА: текст ответа на «Что случилось?» ---------- */
-const СЦЕНАРИИ = [
- {имя:"Болит зуб", заголовок:"Сначала снимаем боль. Приезжайте без записи.", шаги:["Врач смотрит зуб и делает снимок прямо здесь","Обезболиваем и снимаем острую боль","Говорим, что дальше и сколько это стоит"], цена:"Снять боль", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
- {имя:"Сломался зуб", заголовок:"Сделаем снимок и покажем, что можно спасти.", шаги:["Снимок покажет корень и трещину","Врач предложит варианты: восстановить или заменить","Если важно быть с зубом завтра, сделаем временное решение"], цена:"Осмотр и снимок", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
- {имя:"Болит у ребёнка", заголовок:"Спокойно примем и всё объясним вам и ребёнку.", шаги:["По телефону подскажем, что сделать по дороге","Врач осмотрит без спешки","Вместе решите, лечить сейчас или снять боль и прийти днём"], цена:"Детский приём", сумма:"уточняется", кнопка:"Позвонить"},
- {имя:"Нужен снимок КТ", заголовок:"Без записи и поездок. Файл сразу у вас в телефоне.", шаги:["Приходите с направлением или без него","Снимок занимает несколько минут","Отправим файл вам и вашему врачу"], цена:"КТ двух челюстей", сумма:"0 000 ₽", кнопка:"Узнать, когда свободно"},
- {имя:"Имплант, коронка, брекеты", заголовок:"Сначала КТ, потом точный план и цена.", шаги:["Консультация и КТ в один визит","Врач показывает план на снимке","Вы забираете план с ценой и думаете спокойно"], цена:"Консультация", сумма:"от 0 000 ₽", кнопка:"Записаться"},
- {имя:"Другой врач", заголовок:"Скоро здесь же гинеколог, уролог, УЗИ и анализы.", шаги:["Стоматология и КТ открываются первыми","Следом гинекология, урология, лаборатория","Оставьте контакт, напишем, когда откроем запись"], цена:"Открытие", сумма:"дата уточняется", кнопка:"Сообщить об открытии"}
-];
-const БЛОК_ВЫБОРА = document.getElementById("choices");
-const БЛОК_ОТВЕТА = document.getElementById("answer");
-function показать_сценарий(номер){
-  const с = СЦЕНАРИИ[номер];
-  [...БЛОК_ВЫБОРА.children].forEach((к,и)=>к.setAttribute("aria-selected", и===номер ? "true":"false"));
-  БЛОК_ОТВЕТА.innerHTML = `<h3>${с.заголовок}</h3><ol>${с.шаги.map(ш=>`<li><span>${ш}</span></li>`).join("")}</ol>
-    <div class="act"><div class="price">${с.цена}<b>${с.сумма}</b></div><a class="btn main" href="#call" data-call>${с.кнопка}</a><a class="btn line" href="#write" data-write>Написать</a></div>`;
-}
-СЦЕНАРИИ.forEach((с,и)=>{
-  const к = document.createElement("button");
-  к.className="choice"; к.type="button"; к.setAttribute("role","tab"); к.id="choice"+и; к.textContent=с.имя;
-  к.addEventListener("click",()=>показать_сценарий(и));
-  БЛОК_ВЫБОРА.append(к);
-});
-показать_сценарий(0);
 
-/* ---------- ЧАСЫ И РЕЖИМ ДЕНЬ/НОЧЬ ----------
-   На настоящем сайте режим ставится по часам. В показе Давиду открываем ночной: это главная мысль. */
-const КОРЕНЬ = document.documentElement;
-const КНОПКА_РЕЖИМА = document.getElementById("mode");
-function обновить_часы(){
-  const т = new Date();
-  document.getElementById("clock").textContent = String(т.getHours()).padStart(2,"0")+":"+String(т.getMinutes()).padStart(2,"0");
-}
-обновить_часы(); setInterval(обновить_часы, 20000);
-КНОПКА_РЕЖИМА.addEventListener("click",()=>{
-  const день = КОРЕНЬ.dataset.mode !== "day";
-  КОРЕНЬ.dataset.mode = день ? "day" : "night";
-  document.getElementById("modeWord").textContent = день ? "ночью" : "днём";
-});
-
-/* ---------- Кнопки звонка: в прототипе номер ненастоящий, поэтому только подсказка ---------- */
-let таймер_подсказки;
-document.addEventListener("click",e=>{
-  const к = e.target.closest("[data-call],[data-write]");
-  if(!к) return;
-  e.preventDefault();
-  document.querySelector(".toast")?.remove();
-  const п = document.createElement("div");
-  п.className="toast";
-  п.textContent = к.hasAttribute("data-call") ? "Здесь сразу начнётся звонок в клинику" : "Здесь откроется чат в Telegram или MAX";
-  document.body.append(п);
-  clearTimeout(таймер_подсказки); таймер_подсказки=setTimeout(()=>п.remove(),2200);
-});
-
-/* ---------- СНИМОК КТ: проявляется при прокрутке и замирает, когда прокрутка остановилась ----------
-   Снимок для примера, не пациента клиники. Сначала полоса сканера идёт по снимку, потом врач приближает
-   участок, потом снимок снова целиком. */
-const ХОЛСТ_КТ=document.getElementById("ctStory"), КИСТЬ=ХОЛСТ_КТ.getContext("2d");
-const ПОДПИСЬ_СРЕЗА=document.getElementById("ctSlice"), БЛОК_КТ=document.getElementById("ct");
-const ПАНОРАМА=new Image();
-ПАНОРАМА.src="assets/pano.jpg";
-const ФОКУС={x:.74,y:.56,ш:.2,в:.36};
-function плавно(a,b,x){const т=Math.max(0,Math.min(1,(x-a)/(b-a)));return т*т*(3-2*т);}
-function вывести_снимок(s){
-  const к=КИСТЬ, Ш=ХОЛСТ_КТ.width, В=ХОЛСТ_КТ.height;
-  к.globalAlpha=1; к.fillStyle="#060D0E"; к.fillRect(0,0,Ш,В);
-  if(!ПАНОРАМА.complete||!ПАНОРАМА.naturalWidth) return;
-  const скан=плавно(.02,.42,s);
-  const зум=плавно(.46,.62,s)*(1-плавно(.8,.94,s));
-  const масштаб=1+зум*1.25;
-  к.save();
-  к.translate(Ш*.5,В*.5); к.scale(масштаб,масштаб);
-  к.translate(-Ш*(.5+(ФОКУС.x-.5)*зум),-В*(.5+(ФОКУС.y-.5)*зум));
-  к.globalAlpha=.13; к.drawImage(ПАНОРАМА,0,0,Ш,В);
-  к.save(); к.beginPath(); к.rect(0,0,Ш*скан,В); к.clip();
-  к.globalAlpha=1; к.drawImage(ПАНОРАМА,0,0,Ш,В); к.restore();
-  к.restore();
-  // Полоса сканера видна только пока идёт снимок
-  if(скан>0&&скан<1){ к.fillStyle="#E9B56F"; к.fillRect(Ш*скан-1,0,2,В); }
-  // Рамка, которой врач показывает участок
-  const рамка=плавно(.56,.64,s)*(1-плавно(.76,.84,s));
-  if(рамка>0){
-    к.globalAlpha=рамка; к.strokeStyle="#E9B56F"; к.lineWidth=2;
-    const рш=Ш*ФОКУС.ш*масштаб, рв=В*ФОКУС.в*масштаб, x=(Ш-рш)/2, y=(В-рв)/2, у=28;
-    к.beginPath();
-    [[x,y,1,1],[x+рш,y,-1,1],[x,y+рв,1,-1],[x+рш,y+рв,-1,-1]].forEach(([а,б,в,г])=>{к.moveTo(а+в*у,б);к.lineTo(а,б);к.lineTo(а,б+г*у);});
-    к.stroke(); к.globalAlpha=1;
-  }
-  ПОДПИСЬ_СРЕЗА.textContent = скан<1 ? "Снимок: "+Math.round(скан*100)+"%" : (рамка>.5 ? "Врач показывает участок" : "Снимок готов");
-}
-let текущий=0, цель=0, анимация=null;
-function посчитать_цель(){
-  const r=БЛОК_КТ.getBoundingClientRect(), всего=r.height-innerHeight;
-  цель=Math.max(0,Math.min(1,-r.top/Math.max(1,всего)));
-}
-function шаг(){
-  // Плавно догоняем прокрутку: перестали листать - снимок замер.
-  текущий+=(цель-текущий)*.16;
-  if(Math.abs(цель-текущий)<.0006){текущий=цель; анимация=null;} else анимация=requestAnimationFrame(шаг);
-  вывести_снимок(текущий);
-}
-const КАДРЫ=[...document.querySelectorAll("[data-parallax] img")];
-function при_прокрутке(){
-  посчитать_цель();
-  const r=БЛОК_КТ.getBoundingClientRect();
-  if(r.bottom>0 && r.top<innerHeight && !анимация) анимация=requestAnimationFrame(шаг);
-  КАДРЫ.forEach(к=>{ const п=к.parentElement.getBoundingClientRect();
-    if(п.bottom<0||п.top>innerHeight) return;
-    const д=(п.top+п.height/2-innerHeight/2)/(innerHeight+п.height);
-    к.style.transform=`translate3d(0,${(-8+д*-16).toFixed(2)}%,0)`; });
-}
-addEventListener("scroll",при_прокрутке,{passive:true});
-addEventListener("resize",при_прокрутке);
-ПАНОРАМА.addEventListener("load",()=>вывести_снимок(текущий));
-при_прокрутке();
-</script>
+</body>
+</html>

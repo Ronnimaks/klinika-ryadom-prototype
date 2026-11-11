@@ -1,0 +1,123 @@
+Рядом 24 - многопрофильная клиника в Южном Бутово, круглосуточно
+Клиника 24 часа у метро в Южном Бутово: стоматология, КТ на месте, скоро гинекология, урология, УЗИ и анализы.
+<style>
+/* ГЛАВНАЯ СТРАНИЦА КЛИНИКИ: коротко о клинике, направления, ночью, статьи, контакты */
+.m-hero{min-height:calc(100svh - 96px);display:flex;align-items:flex-end;padding-block:clamp(60px,8vw,110px) clamp(40px,5vw,70px)}
+.m-hero .bgimg{background-position:65% 40%}
+.m-hero::before{background:linear-gradient(90deg,rgba(10,21,23,.96) 0%,rgba(10,21,23,.78) 45%,rgba(10,21,23,.35) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)!important}
+.m-hero h1{font-size:clamp(44px,6vw,92px);line-height:.98;font-weight:200;max-width:11em}
+.m-hero .lead{margin-top:22px;color:#C9D5D2;max-width:46ch}
+.plus{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line)}
+.plus div{padding:18px 18px 0 0}
+.plus b{display:block;font:300 clamp(19px,1.7vw,24px)/1.2 var(--display);color:var(--lamp)}
+.plus span{display:block;color:var(--mute);font-size:14.5px;margin-top:6px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:40px}
+.tile{position:relative;aspect-ratio:1/1;overflow:hidden;text-decoration:none;color:#EDF2EE;background:var(--bg3)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,14,.1) 30%,rgba(6,12,14,.9))}
+.tile.soon img{filter:grayscale(.7) brightness(.6)}
+.tile:hover img{transform:scale(1.05);filter:none}
+.tile div{position:absolute;z-index:2;left:18px;right:18px;bottom:16px}
+.tile h3{font-size:clamp(20px,1.8vw,26px)}
+.tile small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;color:#A9B9B7}
+.tile.live small{color:#E9B56F}
+.tile.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.tile.big h3{font-size:clamp(30px,3.4vw,48px)}
+.tile.big p{color:#C9D5D2;margin-top:8px;max-width:34ch}
+.tile .go{display:inline-block;margin-top:14px;color:#E9B56F;font-size:14.5px}
+
+.night2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.night2 .ph{aspect-ratio:4/3;overflow:hidden}
+.night2 .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pts{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid var(--line)}
+.pts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--mute)}
+.pts b{color:var(--ink);font-weight:500}
+
+.form{display:grid;gap:10px;margin-top:26px;max-width:460px}
+.form input{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:3px;padding:14px 16px}
+.form input:focus{border-color:var(--lamp);outline:none}
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plus{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
+</style>
+<main>
+<!-- ========== ПЕРВЫЙ ЭКРАН: клиника и её преимущества ========== -->
+<section class="bgphoto m-hero">
+  <div class="bgimg" style="background-image:url({{К}}assets/img/main_hero.jpg)"></div>
+  <div class="wrap">
+    <span class="tag">Южное Бутово · второй этаж ТЦ · у метро</span>
+    <h1 style="margin-top:18px">Клиника у дома. <em>Открыта 24 часа.</em></h1>
+    <p class="lead">Многопрофильная клиника: начинаем со стоматологии и КТ, следом гинекология, урология, УЗИ и анализы. Приходите без записи, <span class="acc">даже ночью</span>.</p>
+    <div class="acts"><a class="btn main" href="#call" data-call>Позвонить</a><a class="btn line" href="#book" data-book>Записаться</a><a class="btn line" href="#write" data-write>Написать в чат</a></div>
+    <div class="plus">
+      <div><b>Стоматология 24/7</b><span>Снимем боль в любое время</span></div>
+      <div><b>КТ на месте</b><span>Снимок за дверью от врача</span></div>
+      <div><b>Ночью - свой вход</b><span>С торца здания, охрана</span></div>
+      <div><b>Всё в одном месте</b><span>Врачи для всей семьи</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== НАПРАВЛЕНИЯ: каждое - своя страница ========== -->
+<section id="napravleniya">
+  <div class="wrap">
+    <span class="tag">Направления</span>
+    <h2 style="margin-top:14px">Один адрес <em>для всей семьи</em></h2>
+    <div class="tiles">
+      <a class="tile big live rise" href="{{К}}stomatologiya/"><img src="{{К}}assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Лечение, удаление, импланты, брекеты. Круглосуточно, с КТ за соседней дверью.</p><small>работает</small><span class="go">Перейти в раздел →</span></div></a>
+      <a class="tile live rise" href="{{К}}kt/"><img src="{{К}}assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><small>работает</small></div></a>
+      <a class="tile soon rise" href="{{К}}ginekologiya/"><img src="{{К}}assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="{{К}}urologiya/"><img src="{{К}}assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="{{К}}uzi/"><img src="{{К}}assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="{{К}}laboratoriya/"><img src="{{К}}assets/img/dir_lab.jpg" alt=""><div><h3>Анализы</h3><small>скоро открытие</small></div></a>
+      <a class="tile soon rise" href="{{К}}hirurgiya/"><img src="{{К}}assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><small>в планах</small></div></a>
+      <a class="tile soon rise" href="{{К}}proktologiya/"><img src="{{К}}assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><small>в планах</small></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== НОЧЬЮ: коротко, подробно - в разделе стоматологии ========== -->
+<section class="bgphoto" style="background:var(--bg2)">
+  <div class="bgimg" style="background-image:url({{К}}assets/img/bg_night.jpg)"></div>
+  <div class="wrap night2">
+    <div class="ph rise"><img src="{{К}}assets/img/entry.jpg" alt="Вход в клинику ночью, с торца здания" loading="lazy"></div>
+    <div>
+      <span class="tag">Ночью</span>
+      <h2 style="margin-top:14px">Торговый центр закрыт. <em>Клиника открыта.</em></h2>
+      <ul class="pts">
+        <li><b>Отдельный вход</b> с торца здания, вывеска видна с дороги</li>
+        <li><b>Охрана и живой администратор</b> на телефоне всю ночь</li>
+        <li><b>Цену скажем до начала.</b> Ночью делаем только нужное сейчас</li>
+      </ul>
+      <p style="margin-top:26px"><a class="btn line" href="{{К}}stomatologiya/#night">Как пройти ночью</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СТАТЬИ: лента, каждая статья - своя страница ========== -->
+{{ЛЕНТА_СТАТЕЙ}}
+
+<!-- ========== КОНТАКТЫ И КАРТА ========== -->
+<section id="contacts" style="background:var(--bg2)">
+  <div class="wrap two">
+    <div>
+      <span class="tag">Контакты</span>
+      <h2 style="margin-top:14px">Близко <em>к дому</em></h2>
+      <p class="lead" style="margin-top:18px">Москва, Южное Бутово, второй этаж ТЦ у метро. <span class="hi">Днём</span> - через главный вход, <span class="acc">ночью - с торца здания</span>.</p>
+      <p style="margin-top:20px;font:300 26px var(--display)"><a href="#call" data-call style="text-decoration:none">{{ТЕЛЕФОН}}</a></p>
+      <div class="form">
+        <input type="text" placeholder="Как к вам обращаться" aria-label="Имя">
+        <input type="tel" placeholder="Телефон" aria-label="Телефон">
+        <a class="btn main" href="#book" data-book>Перезвоните мне</a>
+      </div>
+    </div>
+    <div>
+      <div class="map"><img src="{{К}}assets/img/map.svg" alt="Схема: клиника на втором этаже ТЦ рядом с метро" style="width:100%;height:100%;object-fit:cover;display:block"><a class="btn main sm go" href="#map" data-map>Открыть в Яндекс Картах</a></div>
+      <p style="font-size:12.5px;color:var(--dim);margin-top:10px">Схема для примера. Настоящий адрес и маршрут - после выбора ТЦ.</p>
+      <div class="areas"><a href="#">Южное Бутово</a><a href="#">Северное Бутово</a><a href="#">Новая Москва</a><a href="#">Щербинка</a><a href="#">Коммунарка</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<!--СКРИПТ-->
