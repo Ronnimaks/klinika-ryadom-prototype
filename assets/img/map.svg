@@ -35,7 +35,7 @@
     <circle r="11" fill="#E9B56F"/>
     <circle r="4" fill="#16120A"/>
   </g>
-  <text x="450" y="380" text-anchor="middle" font-size="18" fill="#EDF2EE">рядом 24</text>
+  <text x="450" y="380" text-anchor="middle" font-size="18" fill="#EDF2EE">КЛИНИКА 24</text>
   <text x="450" y="399" text-anchor="middle" font-size="12" fill="#93A7A6">ТЦ, 2 этаж · ночью вход с торца</text>
   <text x="660" y="105" text-anchor="middle" font-size="12" fill="#6F8584">парк</text>
 </svg>

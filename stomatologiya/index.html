@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Стоматология 24 часа в Южном Бутово с КТ на месте - Рядом 24</title>
+<title>Стоматология 24 часа в Южном Бутово с КТ на месте - Клиника 24</title>
 <meta name="description" content="Круглосуточная стоматология у метро в Южном Бутово: снимем боль ночью без записи, КТ за соседней дверью, план и цена до начала лечения.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -19,9 +19,6 @@
 .hero{position:relative;min-height:min(64vh,640px);display:flex;align-items:flex-end;overflow:hidden;background:var(--bg)}
 .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 42%}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 2%,color-mix(in srgb,var(--bg) 70%,transparent) 38%,transparent 66%),linear-gradient(0deg,var(--bg) 0%,transparent 34%)}
-.only-day{display:none}
-:root[data-mode="day"] .only-day{display:block}
-:root[data-mode="day"] .only-night{display:none}
 .hero-text{position:relative;z-index:2;width:100%;padding-block:clamp(40px,5vw,70px) clamp(16px,2vw,28px)}
 .hero .crumbs{padding:0 0 26px}
 .hero h1{font-size:clamp(42px,5.4vw,84px);line-height:.98;margin-top:16px;font-weight:200;max-width:11em}
@@ -69,23 +66,6 @@
 .ways span{display:block;color:var(--dim);font-size:15.5px;margin-top:8px}
 .ways span em{font-style:normal;color:var(--lamp)}
 
-/* ---------- Дорожная карта направлений: линия тянется при прокрутке ---------- */
-.road{position:relative;margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.road-line{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--line)}
-.road-line i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--lamp);transition:width .2s linear}
-.stage{position:relative;padding-top:40px}
-.stage::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);background:var(--bg);transition:border-color .4s,background .4s}
-.stage.lit::before{border-color:var(--lamp);background:var(--lamp)}
-.stage>b{display:block;font:500 12px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:color .4s}
-.stage.lit>b{color:var(--lamp)}
-.stage .steps{display:grid;gap:10px;margin-top:18px}
-.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;text-decoration:none;padding:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent);transition:border-color .3s,transform .3s}
-.step:hover{border-color:var(--lamp);transform:translateX(4px)}
-.step img{width:72px;height:72px;object-fit:cover;display:block;filter:grayscale(.6) brightness(.7);transition:filter .4s}
-.stage.lit .step img,.step:hover img{filter:none}
-.step h3{font-size:20px}
-.step p{font-size:13.5px;color:var(--mute);margin-top:2px}
-
 /* ---------- Цены: компактно, акцент на названиях услуг ---------- */
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 td{padding:15px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
@@ -115,10 +95,6 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
   .pair .shot{height:72vh}
   .night-grid{grid-template-columns:minmax(0,1fr)}
   .ways{grid-template-columns:minmax(0,1fr)}
-  .road{grid-template-columns:minmax(0,1fr);gap:8px}
-  .road-line{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}
-  .road-line i{width:2px!important;height:var(--h,0%)}
-  .stage{padding:0 0 26px 40px}
 }
 </style>
 </head>
@@ -126,7 +102,7 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
 <div class="proto">Прототип. Название, адрес, телефон, цены и фото - примеры, заменим настоящими.</div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="../index.html" aria-label="Рядом 24, на главную">рядом <b>24</b></a>
+    <a class="logo" href="../index.html" aria-label="Клиника 24, на главную">Клиника <b>24</b></a>
     <div class="open"><i></i><b>Открыто</b> <span>сейчас <span id="clock"></span></span></div>
     <nav class="nav" aria-label="Разделы сайта">
       <div class="drop"><button type="button" aria-expanded="false">Направления</button><div class="drop-menu"><a href="../stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="../kt/" class="live">КТ и рентген<small>работает</small></a><a href="../ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="../urologiya/" class="">Урология<small>скоро открытие</small></a><a href="../uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="../laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="../hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="../proktologiya/" class="">Проктология<small>в планах</small></a></div></div>
@@ -140,23 +116,20 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
   </div>
 </header>
 <div class="mobile-menu">
+  <span class="tag">Стоматология</span><a href="#ask">Что случилось</a><a href="#ct">КТ на месте</a><a href="#night">Как прийти ночью</a><a href="#doctors">Врачи</a><a href="#prices">Цены</a><a href="#where">Где мы</a>
   <span class="tag">Направления</span><a href="../stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="../kt/" class="live">КТ и рентген<small>работает</small></a><a href="../ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="../urologiya/" class="">Урология<small>скоро открытие</small></a><a href="../uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="../laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="../hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="../proktologiya/" class="">Проктология<small>в планах</small></a>
   <span class="tag">Клиника</span>
   <a href="../stati/">Статьи</a><a href="../stomatologiya/#prices">Цены</a><a href="../index.html#contacts">Контакты</a>
-  <a href="#call" data-call>+7 (495) 000-00-00</a>
+  <a href="#book" data-book>Записаться</a>
 </div>
 
-<nav class="sub" aria-label="Разделы стоматологии"><div class="wrap" style="display:flex;align-items:center">
-  <a class="here" href="#start">Стоматология</a><a href="#ask">Что случилось</a><a href="#ct">КТ</a><a href="#night">Ночью</a><a href="#doctors">Врачи</a><a href="#prices">Цены</a><a href="#where">Где мы</a>
-  <button class="mode" id="mode" type="button">Показать <span id="modeWord">днём</span></button>
-</div></nav>
+
 
 <main id="start">
   <!-- ========== ПЕРВЫЙ ЭКРАН ========== -->
   <div class="hero">
     <div class="hero-media" aria-hidden="true">
-      <img class="only-night" src="../assets/img/entry.jpg" alt="">
-      <img class="only-day" src="../assets/img/entry_day.jpg" alt="">
+      <img src="../assets/img/entry.jpg" alt="">
     </div>
     <div class="wrap hero-text">
       <p class="crumbs"><a href="../index.html">Главная</a> / Стоматология</p>
@@ -241,31 +214,6 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
     </div>
   </section>
 
-  <!-- ========== ДОРОЖНАЯ КАРТА: начинаем со стоматологии и идём дальше ========== -->
-  <section id="road" class="bgphoto" style="background:var(--bg2)">
-    <div class="bgimg" style="background-image:url(../assets/img/bg_road.jpg)"></div>
-    <div class="wrap">
-      <span class="tag">Один адрес на всю семью</span>
-      <h2 style="margin-top:14px">Начинаем со стоматологии <em>и идём дальше</em></h2>
-      <div class="road" id="roadmap">
-        <div class="road-line"><i id="roadFill"></i></div>
-        <div class="stage"><b>Открытие - первыми</b><div class="steps">
-          <a class="step" href="#ask"><img src="../assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Круглосуточно, от боли до имплантов</p></div></a>
-          <a class="step" href="../kt/"><img src="../assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><p>За соседней дверью от врача</p></div></a>
-        </div></div>
-        <div class="stage"><b>Следующий этап</b><div class="steps">
-          <a class="step" href="../ginekologiya/"><img src="../assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><p>С экспертным оборудованием</p></div></a>
-          <a class="step" href="../urologiya/"><img src="../assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><p>Приём без долгого ожидания</p></div></a>
-          <a class="step" href="../uzi/"><img src="../assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ и анализы</h3><p>Своя лаборатория</p></div></a>
-        </div></div>
-        <div class="stage"><b>В планах</b><div class="steps">
-          <a class="step" href="../hirurgiya/"><img src="../assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><p>Своя операционная</p></div></a>
-          <a class="step" href="../proktologiya/"><img src="../assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><p>Деликатно, без очередей</p></div></a>
-        </div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ========== ВРАЧИ: листаются стрелками ========== -->
   <section id="doctors" data-rail>
     <div class="wrap">
@@ -292,7 +240,7 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
         <span class="tag">Цены</span>
         <h2 style="margin-top:14px">Цена понятна <em>до начала</em></h2>
         <p class="lead" style="margin-top:18px">Цены по ситуациям. Врач называет сумму до того, как начнёт. Цифры справа - пример, поставим ваши.</p>
-        <p style="margin-top:26px"><a class="btn main" href="#call" data-call>Узнать цену по телефону</a></p>
+        
       </div>
       <table>
         <tr><td>Снять острую боль<small>Осмотр, снимок зуба, обезболивание</small></td><td>от 0 000 ₽</td></tr>
@@ -325,45 +273,52 @@ td small{display:block;color:var(--mute);font:400 14px var(--body);margin-top:3p
     </div>
   </section>
 
-  <section id="stati" data-rail>
+  <section id="stati" data-loop>
   <div class="wrap">
     <div class="rail-head"><div><span class="tag">Статьи врачей</span><h2 style="margin-top:14px">Свежие статьи</h2></div><div class="arrows"><button type="button" data-prev aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-next aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
-    <div class="rail"><a class="card post" href="../stati/bolit-zub-nochyu/"><div class="ph"><img src="../assets/img/post_night.jpg" alt="" loading="lazy"></div>
+  </div>
+  <div class="loop"><div class="loop-track"><a class="card post" href="../stati/bolit-zub-nochyu/"><div class="ph"><img src="../assets/img/post_night.jpg" alt="" loading="lazy"></div>
       <time data-ago="0" data-new></time><h3>Болит зуб ночью: что сделать до приёма врача</h3><p>Почему ночью боль сильнее, что поможет дотянуть до кресла и когда ехать сразу.</p></a><a class="card post" href="../stati/kt-pered-implantom/"><div class="ph"><img src="../assets/img/post_kt.jpg" alt="" loading="lazy"></div>
       <time data-ago="2"></time><h3>Зачем делать КТ перед имплантом</h3><p>Чем объёмный снимок отличается от обычного и почему без него врач работает вслепую.</p></a><a class="card post" href="../stati/rebenok-bolit-zub/"><div class="ph"><img src="../assets/img/post_child.jpg" alt="" loading="lazy"></div>
       <time data-ago="4"></time><h3>У ребёнка болит зуб: как помочь и когда к врачу</h3><p>Что сделать дома, какие признаки опасны и как подготовить ребёнка к приёму.</p></a><a class="card post" href="../stati/slomalsya-zub/"><div class="ph"><img src="../assets/img/post_broken.jpg" alt="" loading="lazy"></div>
       <time data-ago="6"></time><h3>Сломался зуб: что делать в первые часы</h3><p>Как сохранить отколотый кусок, чем закрыть острый край и можно ли спасти зуб.</p></a><a class="card post" href="../stati/boyus-stomatologa/"><div class="ph"><img src="../assets/img/post_calm.jpg" alt="" loading="lazy"></div>
-      <time data-ago="9"></time><h3>Боюсь стоматолога: как лечиться спокойно</h3><p>Страх врача - частая причина запущенных зубов. Что помогает его пережить.</p></a></div>
-    <p style="margin-top:28px"><a class="btn line" href="../stati/">Все статьи</a></p>
-  </div>
+      <time data-ago="9"></time><h3>Боюсь стоматолога: как лечиться спокойно</h3><p>Страх врача - частая причина запущенных зубов. Что помогает его пережить.</p></a></div></div>
+  <div class="wrap"><p style="margin-top:28px"><a class="btn line" href="../stati/">Все статьи</a></p></div>
 </section>
 </main>
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><a class="logo" href="../index.html">рядом <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
+      <div><a class="logo" href="../index.html">Клиника <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
       <div><h4>Направления</h4><a href="../stomatologiya/">Стоматология</a><a href="../kt/">КТ и рентген</a><a href="../ginekologiya/">Гинекология</a><a href="../urologiya/">Урология</a><a href="../uzi/">УЗИ</a><a href="../laboratoriya/">Анализы</a></div>
       <div><h4>Статьи</h4><a href="../stati/bolit-zub-nochyu/">Болит зуб ночью</a><a href="../stati/kt-pered-implantom/">Зачем делать КТ перед имплантом</a><a href="../stati/rebenok-bolit-zub/">У ребёнка болит зуб</a><a href="../stati/slomalsya-zub/">Сломался зуб</a><a href="../stati/">Все статьи</a></div>
-      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Telegram, MAX</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
+      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Написать в чат</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
     </div>
     <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
   </div>
 </footer>
-<div class="bar">
-  <a class="btn main" href="#call" data-call>Позвонить</a>
-  <a class="btn line" href="#write" data-write>Написать</a>
+<!-- ЧАТ: круглая кнопка справа внизу. Прячется при прокрутке, возвращается через секунду после остановки.
+     Внутри демо «цифрового диспетчера 24/7»: готовые вопросы и ответы (site.js, ДИСПЕТЧЕР). -->
+<button class="chat-fab" type="button" aria-label="Написать в чат" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg>
+</button>
+<div class="chat" role="dialog" aria-label="Диспетчер клиники" aria-hidden="true">
+  <div class="chat-head"><div><b>Диспетчер 24/7</b><span><i></i>на связи круглосуточно</span></div><button type="button" class="chat-x" aria-label="Закрыть чат"></button></div>
+  <div class="chat-body" aria-live="polite"></div>
+  <div class="chat-quick"></div>
+  <form class="chat-form"><input type="text" placeholder="Напишите вопрос" aria-label="Ваш вопрос" autocomplete="off"><button type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>
 </div>
 <script src="../assets/site.js"></script>
 
 <script>
 /* ---------- СЦЕНАРИИ ПЕРВОГО ЭКРАНА: текст ответа на «Что случилось?» ---------- */
 const СЦЕНАРИИ = [
- {имя:"Болит зуб", заголовок:"Сначала снимаем боль. Приезжайте без записи.", шаги:["Врач смотрит зуб и делает снимок прямо здесь","Обезболиваем и снимаем острую боль","Говорим, что дальше и сколько это стоит"], цена:"Снять боль", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
- {имя:"Сломался зуб", заголовок:"Сделаем снимок и покажем, что можно спасти.", шаги:["Снимок покажет корень и трещину","Врач предложит варианты: восстановить или заменить","Если важно быть с зубом завтра, сделаем временное решение"], цена:"Осмотр и снимок", сумма:"от 0 000 ₽", кнопка:"Позвонить и ехать"},
- {имя:"Болит у ребёнка", заголовок:"Спокойно примем и всё объясним вам и ребёнку.", шаги:["По телефону подскажем, что сделать по дороге","Врач осмотрит без спешки","Вместе решите, лечить сейчас или снять боль и прийти днём"], цена:"Детский приём", сумма:"уточняется", кнопка:"Позвонить"},
- {имя:"Нужен снимок КТ", заголовок:"Без записи и поездок. Файл сразу у вас в телефоне.", шаги:["Приходите с направлением или без него","Снимок занимает несколько минут","Отправим файл вам и вашему врачу"], цена:"КТ двух челюстей", сумма:"0 000 ₽", кнопка:"Узнать, когда свободно"},
+ {имя:"Болит зуб", заголовок:"Сначала снимаем боль. Приезжайте без записи.", шаги:["Врач смотрит зуб и делает снимок прямо здесь","Обезболиваем и снимаем острую боль","Говорим, что дальше и сколько это стоит"], цена:"Снять боль", сумма:"от 0 000 ₽", кнопка:"Записаться"},
+ {имя:"Сломался зуб", заголовок:"Сделаем снимок и покажем, что можно спасти.", шаги:["Снимок покажет корень и трещину","Врач предложит варианты: восстановить или заменить","Если важно быть с зубом завтра, сделаем временное решение"], цена:"Осмотр и снимок", сумма:"от 0 000 ₽", кнопка:"Записаться"},
+ {имя:"Болит у ребёнка", заголовок:"Спокойно примем и всё объясним вам и ребёнку.", шаги:["По телефону подскажем, что сделать по дороге","Врач осмотрит без спешки","Вместе решите, лечить сейчас или снять боль и прийти днём"], цена:"Детский приём", сумма:"уточняется", кнопка:"Записаться"},
+ {имя:"Нужен снимок КТ", заголовок:"Без записи и поездок. Файл сразу у вас в телефоне.", шаги:["Приходите с направлением или без него","Снимок занимает несколько минут","Отправим файл вам и вашему врачу"], цена:"КТ двух челюстей", сумма:"0 000 ₽", кнопка:"Записаться на снимок"},
  {имя:"Имплант, коронка, брекеты", заголовок:"Сначала КТ, потом точный план и цена.", шаги:["Консультация и КТ в один визит","Врач показывает план на снимке","Вы забираете план с ценой и думаете спокойно"], цена:"Консультация", сумма:"от 0 000 ₽", кнопка:"Записаться"},
- {имя:"Другой врач", заголовок:"Скоро здесь же гинеколог, уролог, УЗИ и анализы.", шаги:["Стоматология и КТ открываются первыми","Следом гинекология, урология, лаборатория","Оставьте контакт, напишем, когда откроем запись"], цена:"Открытие", сумма:"дата уточняется", кнопка:"Сообщить об открытии"}
+ {имя:"Другой врач", заголовок:"Скоро здесь же гинеколог, уролог, УЗИ и анализы.", шаги:["Стоматология и КТ открываются первыми","Следом гинекология, урология, лаборатория","Оставьте контакт, напишем, когда откроем запись"], цена:"Открытие", сумма:"дата уточняется", кнопка:"Узнать об открытии", чат:true}
 ];
 const БЛОК_ВЫБОРА = document.getElementById("choices");
 const БЛОК_ОТВЕТА = document.getElementById("answer");
@@ -371,7 +326,7 @@ function показать_сценарий(номер){
   const с = СЦЕНАРИИ[номер];
   [...БЛОК_ВЫБОРА.children].forEach((к,и)=>к.setAttribute("aria-selected", и===номер ? "true":"false"));
   БЛОК_ОТВЕТА.innerHTML = `<h3>${с.заголовок}</h3><ol>${с.шаги.map(ш=>`<li><span>${ш}</span></li>`).join("")}</ol>
-    <div class="act"><div class="price">${с.цена}<b>${с.сумма}</b></div><a class="btn main" href="#call" data-call>${с.кнопка}</a><a class="btn line" href="#write" data-write>Написать</a></div>`;
+    <div class="act"><div class="price">${с.цена}<b>${с.сумма}</b></div><a class="btn main" href="#book" ${с.чат ? "data-write" : "data-book"}>${с.кнопка}</a></div>`;
 }
 СЦЕНАРИИ.forEach((с,и)=>{
   const к = document.createElement("button");
@@ -380,15 +335,6 @@ function показать_сценарий(номер){
   БЛОК_ВЫБОРА.append(к);
 });
 показать_сценарий(0);
-
-/* ---------- РЕЖИМ ДЕНЬ/НОЧЬ ----------
-   На настоящем сайте режим ставится по часам. В показе Давиду открываем ночной: это главная мысль. */
-const КОРЕНЬ = document.documentElement;
-document.getElementById("mode").addEventListener("click",()=>{
-  const день = КОРЕНЬ.dataset.mode !== "day";
-  КОРЕНЬ.dataset.mode = день ? "day" : "night";
-  document.getElementById("modeWord").textContent = день ? "ночью" : "днём";
-});
 
 /* ---------- СНИМОК КТ: проявляется при прокрутке и замирает, когда прокрутка остановилась ----------
    Снимок для примера, не пациента клиники. Сначала полоса сканера идёт по снимку, потом врач приближает
@@ -435,20 +381,10 @@ function шаг(){
   вывести_снимок(текущий);
 }
 
-/* ---------- ДОРОЖНАЯ КАРТА: линия тянется при прокрутке, этапы загораются по очереди ---------- */
-const КАРТА=document.getElementById("roadmap"), ЛИНИЯ=document.getElementById("roadFill"), ЭТАПЫ=[...КАРТА.querySelectorAll(".stage")];
-function дорожная_карта(){
-  const р=КАРТА.getBoundingClientRect();
-  const доля=Math.max(0,Math.min(1,(innerHeight*.85-р.top)/(р.height*.9)));
-  ЛИНИЯ.style.width=(доля*100)+"%"; ЛИНИЯ.style.setProperty("--h",(доля*100)+"%"); ЛИНИЯ.style.height=innerWidth<=720?(доля*100)+"%":"";
-  ЭТАПЫ.forEach((э,и)=>э.classList.toggle("lit", доля >= и/ЭТАПЫ.length + .02));
-}
-
 function при_прокрутке(){
   посчитать_цель();
   const r=БЛОК_КТ.getBoundingClientRect();
   if(r.bottom>0 && r.top<innerHeight && !анимация) анимация=requestAnimationFrame(шаг);
-  дорожная_карта();
 }
 addEventListener("scroll",при_прокрутке,{passive:true});
 addEventListener("resize",при_прокрутке);

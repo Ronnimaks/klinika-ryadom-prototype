@@ -1,4 +1,4 @@
-/* ОБЩИЙ СТИЛЬ САЙТА КЛИНИКИ «РЯДОМ 24» (прототип)
+/* ОБЩИЙ СТИЛЬ САЙТА «КЛИНИКА 24» (прототип)
    Подключается на всех страницах: главная, стоматология, направления, статьи.
    Правила вида - в ПРАВИЛА_САЙТА.md. Цвета и шрифты утверждены 11.11.2026, менять только с согласия. */
 
@@ -16,8 +16,9 @@
   --lamp:#8E5219;--lamp-ink:#FFF8EE;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-[id]{scroll-margin-top:110px}
+/* touch-action: двойное касание не приближает страницу (щипок пальцами работает) */
+html{scroll-behavior:smooth;touch-action:manipulation}
+[id]{scroll-margin-top:80px}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);transition:background .5s,color .5s;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
 h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;letter-spacing:-.022em;text-wrap:balance}
@@ -42,8 +43,9 @@ h2 em,h1 em{font-style:normal;color:var(--lamp)}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:18px;height:64px}
 /* Логотип: буквы и цифры ОДНИМ шрифтом, одного размера и на одной линии (правило владельца 11.11) */
-.logo{font:400 24px/1 var(--display);letter-spacing:-.02em;font-variant-numeric:lining-nums;text-decoration:none;white-space:nowrap}
-.logo b{font-weight:400;color:var(--lamp)}
+/* Логотип ЗАГЛАВНЫМИ: высота букв = высота цифр, один шрифт и одна толщина (правило владельца) */
+.logo{font:500 19px/1 var(--display);letter-spacing:.07em;text-transform:uppercase;font-variant-numeric:lining-nums;text-decoration:none;white-space:nowrap}
+.logo b{font:inherit;color:var(--lamp)}
 .open{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mute);white-space:nowrap}
 .open i{width:7px;height:7px;border-radius:50%;background:var(--lamp);flex:none;animation:pulse 2.4s ease-in-out infinite}
 .open b{font-weight:500;color:var(--ink)}
@@ -183,15 +185,64 @@ footer{border-top:1px solid var(--line);padding-block:48px 120px;color:var(--mut
 }
 @media (max-width:720px){
   body{font-size:16px}
-  .phone,.open span{display:none}
-  .open{font-size:13px}
-  .logo{font-size:22px}
+  .open{display:none}
+  .nav{margin-left:auto}
+  .phone{font-size:15px}
+  .logo{font-size:17px}
   .top .wrap{gap:10px;height:56px}
   .mobile-menu{inset:56px 0 0}
   .two{grid-template-columns:minmax(0,1fr)}
   .rail{grid-auto-columns:78%;gap:14px}
   .arrows button{width:42px;height:42px}
   .foot{grid-template-columns:minmax(0,1fr)}
-  .bar{display:flex}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rise{opacity:1;transform:none}}
+
+/* ---------- Чат: круглая кнопка справа внизу ----------
+   Прячется «бульком» при прокрутке и так же возвращается через секунду после остановки (site.js, «Чат»). */
+.chat-fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:65;width:58px;height:58px;border-radius:50%;
+  background:var(--lamp);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 6px color-mix(in srgb,var(--lamp) 14%,transparent);
+  transition:transform .42s cubic-bezier(.34,1.7,.5,1),opacity .25s}
+.chat-fab svg{width:25px;height:25px;fill:var(--lamp-ink)}
+.chat-fab.hid{transform:scale(0);opacity:0;transition:transform .32s cubic-bezier(.6,-.45,.7,.05),opacity .3s .05s}
+.chat-fab:hover{transform:scale(1.06)}
+.chat-open .chat-fab{transform:scale(0);opacity:0}
+.chat{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:66;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100svh - 120px));
+  display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;
+  transform-origin:100% 100%;transform:scale(.2);opacity:0;pointer-events:none;transition:transform .42s cubic-bezier(.34,1.5,.5,1),opacity .25s}
+.chat-open .chat{transform:none;opacity:1;pointer-events:auto}
+.chat-head{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 14px 20px;border-bottom:1px solid var(--line)}
+.chat-head b{display:block;font:400 18px/1.2 var(--display)}
+.chat-head span{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--mute);margin-top:3px}
+.chat-head span i{width:7px;height:7px;border-radius:50%;background:#6FD08C}
+.chat-x{width:36px;height:36px;position:relative;border-radius:50%}
+.chat-x::before,.chat-x::after{content:"";position:absolute;left:10px;top:17px;width:16px;height:1.5px;background:var(--ink);transform:rotate(45deg)}
+.chat-x::after{transform:rotate(-45deg)}
+.chat-body{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:15px;line-height:1.45;animation:msg .3s cubic-bezier(.34,1.4,.5,1)}
+.msg.bot{background:var(--bg3);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:var(--lamp);color:var(--lamp-ink);border-bottom-right-radius:4px}
+.msg.typing{display:flex;gap:4px;padding:14px}
+.msg.typing i{width:6px;height:6px;border-radius:50%;background:var(--mute);animation:dot 1s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+@keyframes msg{from{opacity:0;transform:translateY(8px) scale(.96)}}
+.chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
+.chat-quick button{border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:13.5px;color:var(--ink)}
+.chat-quick button:hover{border-color:var(--lamp)}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-form input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:10px 16px}
+.chat-form input:focus{outline:none;border-color:var(--lamp)}
+.chat-form button{width:44px;height:44px;border-radius:50%;background:var(--lamp);display:grid;place-items:center;flex:none}
+.chat-form svg{width:19px;height:19px;fill:var(--lamp-ink)}
+@media (max-width:720px){.chat-fab{width:54px;height:54px}.chat{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:min(560px,calc(100svh - 90px))}}
+
+/* ---------- Лента статей по кругу ----------
+   Текущая статья по центру, по бокам края соседних. Листается стрелками и пальцем, бесконечно (site.js). */
+.loop{overflow:hidden;margin-top:36px;touch-action:pan-y}
+.loop-track{display:flex;gap:22px;will-change:transform}
+.loop-track.anim{transition:transform .6s cubic-bezier(.22,.8,.2,1)}
+.loop .post{flex:0 0 var(--w,560px);opacity:.38;transform:scale(.94);transition:opacity .5s,transform .6s cubic-bezier(.22,.8,.2,1);user-select:none;-webkit-user-drag:none}
+.loop .post img{pointer-events:none}
+.loop .post.on{opacity:1;transform:none}
+@media (max-width:720px){.loop-track{gap:12px}}

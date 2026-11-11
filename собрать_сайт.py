@@ -1,5 +1,5 @@
 """
-СБОРКА САЙТА КЛИНИКИ «РЯДОМ 24» (прототип, многостраничный)
+СБОРКА САЙТА КЛИНИКИ «КЛИНИКА 24» (прототип, многостраничный)
 
 Что делает: собирает готовые страницы из исходников - вставляет общую шапку, меню и подвал,
 создаёт страницы направлений и статей.
@@ -21,6 +21,8 @@ from статьи import СТАТЬИ  # noqa: E402
 
 # ---------- НАСТРОЙКИ: телефон и название (в прототипе - примеры) ----------
 ТЕЛЕФОН = "+7 (495) 000-00-00"
+НАЗВАНИЕ = "Клиника 24"   # рабочее название, бренд уточняется у Давида
+ЛОГОТИП = 'Клиника <b>24</b>'  # пишется ЗАГЛАВНЫМИ: буквы и цифры одной высоты (ПРАВИЛА_САЙТА.md)
 
 # ---------- НАПРАВЛЕНИЯ: адрес, название, состояние, коротко, картинка ----------
 НАПРАВЛЕНИЯ = [
@@ -62,10 +64,16 @@ def шапка(к, текущий=""):
         f'<a href="{к}{а}/" class="{"live" if с == "открыта" else ""}">{н}<small>{подпись_состояния(с)}</small></a>'
         for а, н, с, _, _ in НАПРАВЛЕНИЯ)
     def отметка(имя): return ' aria-current="page"' if текущий == имя else ""
+    # Разделы стоматологии - в меню из трёх полосок (отдельной строки под шапкой больше нет)
+    разделы = ""
+    if текущий == "stomatologiya":
+        разделы = ('<span class="tag">Стоматология</span>'
+                   '<a href="#ask">Что случилось</a><a href="#ct">КТ на месте</a><a href="#night">Как прийти ночью</a>'
+                   '<a href="#doctors">Врачи</a><a href="#prices">Цены</a><a href="#where">Где мы</a>')
     return f"""<div class="proto">Прототип. Название, адрес, телефон, цены и фото - примеры, заменим настоящими.</div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="{к}index.html" aria-label="Рядом 24, на главную">рядом <b>24</b></a>
+    <a class="logo" href="{к}index.html" aria-label="{НАЗВАНИЕ}, на главную">{ЛОГОТИП}</a>
     <div class="open"><i></i><b>Открыто</b> <span>сейчас <span id="clock"></span></span></div>
     <nav class="nav" aria-label="Разделы сайта">
       <div class="drop"><button type="button" aria-expanded="false">Направления</button><div class="drop-menu">{пункты}</div></div>
@@ -79,10 +87,11 @@ def шапка(к, текущий=""):
   </div>
 </header>
 <div class="mobile-menu">
+  {разделы}
   <span class="tag">Направления</span>{пункты}
   <span class="tag">Клиника</span>
   <a href="{к}stati/">Статьи</a><a href="{к}stomatologiya/#prices">Цены</a><a href="{к}index.html#contacts">Контакты</a>
-  <a href="#call" data-call>{ТЕЛЕФОН}</a>
+  <a href="#book" data-book>Записаться</a>
 </div>
 """
 
@@ -94,17 +103,24 @@ def подвал(к):
     return f"""<footer>
   <div class="wrap">
     <div class="foot">
-      <div><a class="logo" href="{к}index.html">рядом <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
+      <div><a class="logo" href="{к}index.html">{ЛОГОТИП}</a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
       <div><h4>Направления</h4>{напр}</div>
       <div><h4>Статьи</h4>{статьи}<a href="{к}stati/">Все статьи</a></div>
-      <div><h4>Связь</h4><a href="#call" data-call>{ТЕЛЕФОН}</a><a href="#write" data-write>Telegram, MAX</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
+      <div><h4>Связь</h4><a href="#call" data-call>{ТЕЛЕФОН}</a><a href="#write" data-write>Написать в чат</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
     </div>
     <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
   </div>
 </footer>
-<div class="bar">
-  <a class="btn main" href="#call" data-call>Позвонить</a>
-  <a class="btn line" href="#write" data-write>Написать</a>
+<!-- ЧАТ: круглая кнопка справа внизу. Прячется при прокрутке, возвращается через секунду после остановки.
+     Внутри демо «цифрового диспетчера 24/7»: готовые вопросы и ответы (site.js, ДИСПЕТЧЕР). -->
+<button class="chat-fab" type="button" aria-label="Написать в чат" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg>
+</button>
+<div class="chat" role="dialog" aria-label="Диспетчер клиники" aria-hidden="true">
+  <div class="chat-head"><div><b>Диспетчер 24/7</b><span><i></i>на связи круглосуточно</span></div><button type="button" class="chat-x" aria-label="Закрыть чат"></button></div>
+  <div class="chat-body" aria-live="polite"></div>
+  <div class="chat-quick"></div>
+  <form class="chat-form"><input type="text" placeholder="Напишите вопрос" aria-label="Ваш вопрос" autocomplete="off"><button type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>
 </div>
 <script src="{к}assets/site.js"></script>
 """
@@ -116,12 +132,13 @@ def подвал(к):
 def лента_статей(к, заголовок="Свежие статьи"):
     карточки = "".join(f"""<a class="card post" href="{к}stati/{с["адрес"]}/"><div class="ph"><img src="{к}assets/img/{с["картинка"]}" alt="" loading="lazy"></div>
       <time data-ago="{с["дней_назад"]}"{" data-new" if с["дней_назад"] == 0 else ""}></time><h3>{с["заголовок"]}</h3><p>{с["анонс"]}</p></a>""" for с in СТАТЬИ)
-    return f"""<section id="stati" data-rail>
+    # Лента по кругу: текущая статья по центру, по бокам края соседних, листается бесконечно (site.js, «Лента статей»)
+    return f"""<section id="stati" data-loop>
   <div class="wrap">
     <div class="rail-head"><div><span class="tag">Статьи врачей</span><h2 style="margin-top:14px">{заголовок}</h2></div>{СТРЕЛКИ}</div>
-    <div class="rail">{карточки}</div>
-    <p style="margin-top:28px"><a class="btn line" href="{к}stati/">Все статьи</a></p>
   </div>
+  <div class="loop"><div class="loop-track">{карточки}</div></div>
+  <div class="wrap"><p style="margin-top:28px"><a class="btn line" href="{к}stati/">Все статьи</a></p></div>
 </section>"""
 
 
@@ -153,7 +170,7 @@ def страница_направления(адрес, имя, состояни
     if адрес == "kt":
         суть = ('<p class="lead" style="margin-top:22px">Кабинет КТ уже работает рядом с кабинетом стоматолога. '
                 'Снимок без записи, <span class="acc">файл сразу в телефон или на почту</span>.</p>'
-                f'<p style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn main" href="#call" data-call>Узнать, когда свободно</a>'
+                f'<p style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn main" href="#book" data-book>Записаться на снимок</a>'
                 f'<a class="btn line" href="{к}stomatologiya/#ct">Как это устроено</a></p>')
     else:
         суть = ('<p class="lead" style="margin-top:22px">Здесь будет страница направления: врачи, услуги, цены и запись. '
@@ -175,7 +192,7 @@ def страница_направления(адрес, имя, состояни
 <section style="padding-top:0"><div class="wrap"><span class="tag">Другие направления</span><div class="areas">{другие.replace("<a ", '<a ')}</div></div></section>
 </main>
 """
-    записать(f"{адрес}/index.html", голова(f"{имя} - клиника Рядом 24, Южное Бутово", коротко, к)
+    записать(f"{адрес}/index.html", голова(f"{имя} - {НАЗВАНИЕ}, Южное Бутово", коротко, к)
              + "</head>\n<body>\n" + шапка(к) + содержимое + подвал(к) + "</body>\n</html>\n")
 
 
@@ -206,14 +223,14 @@ def страница_статьи(с, номер):
     <p class="lead" style="margin-top:16px">{с["анонс"]}</p>
     <div class="hero-ph"><img src="{к}assets/img/{с["картинка"]}" alt=""></div>
     <div class="body">{абзацы}</div>
-    <div class="cta"><b>Болит сейчас? <span class="acc">Мы открыты круглосуточно.</span></b><span style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn main" href="#call" data-call>Позвонить</a><a class="btn line" href="#book" data-book>Записаться</a></span></div>
+    <div class="cta"><b>Болит сейчас? <span class="acc">Мы открыты круглосуточно.</span></b><a class="btn main" href="#book" data-book>Записаться</a></div>
     <p style="margin-top:22px;font-size:13px;color:var(--dim)">Статья носит справочный характер и не заменяет осмотр врача.</p>
   </article>
 </div></section>
 <section style="padding-top:0"><div class="wrap"><span class="tag">Ещё статьи</span><div class="more">{ещё}</div></div></section>
 </main>
 """
-    записать(f"stati/{с['адрес']}/index.html", голова(с["заголовок"] + " - Рядом 24", с["анонс"], к) + стиль
+    записать(f"stati/{с['адрес']}/index.html", голова(с["заголовок"] + " - " + НАЗВАНИЕ, с["анонс"], к) + стиль
              + "\n</head>\n<body>\n" + шапка(к, "stati") + содержимое + подвал(к) + "</body>\n</html>\n")
 
 
@@ -229,7 +246,7 @@ def страница_всех_статей():
 </div></section>
 </main>
 """
-    записать("stati/index.html", голова("Статьи - клиника Рядом 24", "Статьи врачей клиники", к)
+    записать("stati/index.html", голова("Статьи - " + НАЗВАНИЕ, "Статьи врачей клиники", к)
              + "</head>\n<body>\n" + шапка(к, "stati") + содержимое + подвал(к) + "</body>\n</html>\n")
 
 

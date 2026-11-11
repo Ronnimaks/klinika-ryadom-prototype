@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>УЗИ - клиника Рядом 24, Южное Бутово</title>
+<title>УЗИ - Клиника 24, Южное Бутово</title>
 <meta name="description" content="Все виды ультразвуковой диагностики.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -15,7 +15,7 @@
 <div class="proto">Прототип. Название, адрес, телефон, цены и фото - примеры, заменим настоящими.</div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="../index.html" aria-label="Рядом 24, на главную">рядом <b>24</b></a>
+    <a class="logo" href="../index.html" aria-label="Клиника 24, на главную">Клиника <b>24</b></a>
     <div class="open"><i></i><b>Открыто</b> <span>сейчас <span id="clock"></span></span></div>
     <nav class="nav" aria-label="Разделы сайта">
       <div class="drop"><button type="button" aria-expanded="false">Направления</button><div class="drop-menu"><a href="../stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="../kt/" class="live">КТ и рентген<small>работает</small></a><a href="../ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="../urologiya/" class="">Урология<small>скоро открытие</small></a><a href="../uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="../laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="../hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="../proktologiya/" class="">Проктология<small>в планах</small></a></div></div>
@@ -29,10 +29,11 @@
   </div>
 </header>
 <div class="mobile-menu">
+  
   <span class="tag">Направления</span><a href="../stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="../kt/" class="live">КТ и рентген<small>работает</small></a><a href="../ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="../urologiya/" class="">Урология<small>скоро открытие</small></a><a href="../uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="../laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="../hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="../proktologiya/" class="">Проктология<small>в планах</small></a>
   <span class="tag">Клиника</span>
   <a href="../stati/">Статьи</a><a href="../stomatologiya/#prices">Цены</a><a href="../index.html#contacts">Контакты</a>
-  <a href="#call" data-call>+7 (495) 000-00-00</a>
+  <a href="#book" data-book>Записаться</a>
 </div>
 <main>
 <section class="bgphoto" style="min-height:72vh;display:flex;align-items:center">
@@ -50,17 +51,24 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><a class="logo" href="../index.html">рядом <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
+      <div><a class="logo" href="../index.html">Клиника <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
       <div><h4>Направления</h4><a href="../stomatologiya/">Стоматология</a><a href="../kt/">КТ и рентген</a><a href="../ginekologiya/">Гинекология</a><a href="../urologiya/">Урология</a><a href="../uzi/">УЗИ</a><a href="../laboratoriya/">Анализы</a></div>
       <div><h4>Статьи</h4><a href="../stati/bolit-zub-nochyu/">Болит зуб ночью</a><a href="../stati/kt-pered-implantom/">Зачем делать КТ перед имплантом</a><a href="../stati/rebenok-bolit-zub/">У ребёнка болит зуб</a><a href="../stati/slomalsya-zub/">Сломался зуб</a><a href="../stati/">Все статьи</a></div>
-      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Telegram, MAX</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
+      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Написать в чат</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
     </div>
     <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
   </div>
 </footer>
-<div class="bar">
-  <a class="btn main" href="#call" data-call>Позвонить</a>
-  <a class="btn line" href="#write" data-write>Написать</a>
+<!-- ЧАТ: круглая кнопка справа внизу. Прячется при прокрутке, возвращается через секунду после остановки.
+     Внутри демо «цифрового диспетчера 24/7»: готовые вопросы и ответы (site.js, ДИСПЕТЧЕР). -->
+<button class="chat-fab" type="button" aria-label="Написать в чат" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg>
+</button>
+<div class="chat" role="dialog" aria-label="Диспетчер клиники" aria-hidden="true">
+  <div class="chat-head"><div><b>Диспетчер 24/7</b><span><i></i>на связи круглосуточно</span></div><button type="button" class="chat-x" aria-label="Закрыть чат"></button></div>
+  <div class="chat-body" aria-live="polite"></div>
+  <div class="chat-quick"></div>
+  <form class="chat-form"><input type="text" placeholder="Напишите вопрос" aria-label="Ваш вопрос" autocomplete="off"><button type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>
 </div>
 <script src="../assets/site.js"></script>
 </body>

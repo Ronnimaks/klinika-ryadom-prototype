@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Рядом 24 - многопрофильная клиника в Южном Бутово, круглосуточно</title>
+<title>Клиника 24 - многопрофильная клиника в Южном Бутово, круглосуточно</title>
 <meta name="description" content="Клиника 24 часа у метро в Южном Бутово: стоматология, КТ на месте, скоро гинекология, урология, УЗИ и анализы.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -45,18 +45,39 @@
 .pts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--mute)}
 .pts b{color:var(--ink);font-weight:500}
 
+/* ---------- ДОРОЖНАЯ КАРТА (для показа Давиду): линия сверху вниз ----------
+   Линия заполняется ровно до середины экрана: доскроллил точку старта до центра - линия пошла.
+   Этап загорается, когда его точка доходит до центра экрана. */
+.road{position:relative;margin-top:56px;padding-left:46px}
+.road-line{position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.road-line i{position:absolute;left:0;top:0;width:2px;height:0;background:var(--lamp);box-shadow:0 0 12px color-mix(in srgb,var(--lamp) 60%,transparent)}
+.stage{position:relative;padding-bottom:clamp(40px,6vw,72px)}
+.stage:last-child{padding-bottom:0}
+.stage::before{content:"";position:absolute;left:-46px;top:0;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);background:var(--bg2);transition:border-color .4s,background .4s,box-shadow .4s}
+.stage.lit::before{border-color:var(--lamp);background:var(--lamp);box-shadow:0 0 0 6px color-mix(in srgb,var(--lamp) 18%,transparent)}
+.stage>b{display:block;font:500 12px/20px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:color .4s}
+.stage.lit>b{color:var(--lamp)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;text-decoration:none;padding:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent);transition:border-color .3s,transform .3s,opacity .5s}
+.step:hover{border-color:var(--lamp);transform:translateX(4px)}
+.step img{width:72px;height:72px;object-fit:cover;display:block;filter:grayscale(.7) brightness(.6);transition:filter .5s}
+.stage.lit .step img,.step:hover img{filter:none}
+.step h3{font-size:20px}
+.step p{font-size:13.5px;color:var(--mute);margin-top:2px}
+
 .form{display:grid;gap:10px;margin-top:26px;max-width:460px}
 .form input{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:3px;padding:14px 16px}
 .form input:focus{border-color:var(--lamp);outline:none}
 @media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plus{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:720px){.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
+@media (max-width:1040px){.steps{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:720px){.road{padding-left:38px}.stage::before{left:-38px}.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
 </style>
 </head>
 <body>
 <div class="proto">Прототип. Название, адрес, телефон, цены и фото - примеры, заменим настоящими.</div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Рядом 24, на главную">рядом <b>24</b></a>
+    <a class="logo" href="index.html" aria-label="Клиника 24, на главную">Клиника <b>24</b></a>
     <div class="open"><i></i><b>Открыто</b> <span>сейчас <span id="clock"></span></span></div>
     <nav class="nav" aria-label="Разделы сайта">
       <div class="drop"><button type="button" aria-expanded="false">Направления</button><div class="drop-menu"><a href="stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="kt/" class="live">КТ и рентген<small>работает</small></a><a href="ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="urologiya/" class="">Урология<small>скоро открытие</small></a><a href="uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="proktologiya/" class="">Проктология<small>в планах</small></a></div></div>
@@ -70,10 +91,11 @@
   </div>
 </header>
 <div class="mobile-menu">
+  
   <span class="tag">Направления</span><a href="stomatologiya/" class="live">Стоматология<small>работает</small></a><a href="kt/" class="live">КТ и рентген<small>работает</small></a><a href="ginekologiya/" class="">Гинекология<small>скоро открытие</small></a><a href="urologiya/" class="">Урология<small>скоро открытие</small></a><a href="uzi/" class="">УЗИ<small>скоро открытие</small></a><a href="laboratoriya/" class="">Анализы<small>скоро открытие</small></a><a href="hirurgiya/" class="">Хирургия<small>в планах</small></a><a href="proktologiya/" class="">Проктология<small>в планах</small></a>
   <span class="tag">Клиника</span>
   <a href="stati/">Статьи</a><a href="stomatologiya/#prices">Цены</a><a href="index.html#contacts">Контакты</a>
-  <a href="#call" data-call>+7 (495) 000-00-00</a>
+  <a href="#book" data-book>Записаться</a>
 </div>
 
 <main>
@@ -83,8 +105,8 @@
   <div class="wrap">
     <span class="tag">Южное Бутово · второй этаж ТЦ · у метро</span>
     <h1 style="margin-top:18px">Клиника у дома. <em>Открыта 24 часа.</em></h1>
-    <p class="lead">Многопрофильная клиника: начинаем со стоматологии и КТ, следом гинекология, урология, УЗИ и анализы. Приходите без записи, <span class="acc">даже ночью</span>.</p>
-    <div class="acts"><a class="btn main" href="#call" data-call>Позвонить</a><a class="btn line" href="#book" data-book>Записаться</a><a class="btn line" href="#write" data-write>Написать в чат</a></div>
+    <p class="lead">Лечим зубы и делаем снимок КТ в одном месте, у метро. Приходите без записи, <span class="acc">даже ночью</span>.</p>
+    <div class="acts"><a class="btn main" href="#book" data-book>Записаться</a></div>
     <div class="plus">
       <div><b>Стоматология 24/7</b><span>Снимем боль в любое время</span></div>
       <div><b>КТ на месте</b><span>Снимок за дверью от врача</span></div>
@@ -131,16 +153,41 @@
 </section>
 
 <!-- ========== СТАТЬИ: лента, каждая статья - своя страница ========== -->
-<section id="stati" data-rail>
+<section id="stati" data-loop>
   <div class="wrap">
     <div class="rail-head"><div><span class="tag">Статьи врачей</span><h2 style="margin-top:14px">Свежие статьи</h2></div><div class="arrows"><button type="button" data-prev aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-next aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
-    <div class="rail"><a class="card post" href="stati/bolit-zub-nochyu/"><div class="ph"><img src="assets/img/post_night.jpg" alt="" loading="lazy"></div>
+  </div>
+  <div class="loop"><div class="loop-track"><a class="card post" href="stati/bolit-zub-nochyu/"><div class="ph"><img src="assets/img/post_night.jpg" alt="" loading="lazy"></div>
       <time data-ago="0" data-new></time><h3>Болит зуб ночью: что сделать до приёма врача</h3><p>Почему ночью боль сильнее, что поможет дотянуть до кресла и когда ехать сразу.</p></a><a class="card post" href="stati/kt-pered-implantom/"><div class="ph"><img src="assets/img/post_kt.jpg" alt="" loading="lazy"></div>
       <time data-ago="2"></time><h3>Зачем делать КТ перед имплантом</h3><p>Чем объёмный снимок отличается от обычного и почему без него врач работает вслепую.</p></a><a class="card post" href="stati/rebenok-bolit-zub/"><div class="ph"><img src="assets/img/post_child.jpg" alt="" loading="lazy"></div>
       <time data-ago="4"></time><h3>У ребёнка болит зуб: как помочь и когда к врачу</h3><p>Что сделать дома, какие признаки опасны и как подготовить ребёнка к приёму.</p></a><a class="card post" href="stati/slomalsya-zub/"><div class="ph"><img src="assets/img/post_broken.jpg" alt="" loading="lazy"></div>
       <time data-ago="6"></time><h3>Сломался зуб: что делать в первые часы</h3><p>Как сохранить отколотый кусок, чем закрыть острый край и можно ли спасти зуб.</p></a><a class="card post" href="stati/boyus-stomatologa/"><div class="ph"><img src="assets/img/post_calm.jpg" alt="" loading="lazy"></div>
-      <time data-ago="9"></time><h3>Боюсь стоматолога: как лечиться спокойно</h3><p>Страх врача - частая причина запущенных зубов. Что помогает его пережить.</p></a></div>
-    <p style="margin-top:28px"><a class="btn line" href="stati/">Все статьи</a></p>
+      <time data-ago="9"></time><h3>Боюсь стоматолога: как лечиться спокойно</h3><p>Страх врача - частая причина запущенных зубов. Что помогает его пережить.</p></a></div></div>
+  <div class="wrap"><p style="margin-top:28px"><a class="btn line" href="stati/">Все статьи</a></p></div>
+</section>
+
+<!-- ========== ДОРОЖНАЯ КАРТА: как растёт клиника (показ Давиду) ========== -->
+<section id="road" class="bgphoto" style="background:var(--bg2)">
+  <div class="bgimg" style="background-image:url(assets/img/bg_road.jpg)"></div>
+  <div class="wrap">
+    <span class="tag">Как растёт клиника</span>
+    <h2 style="margin-top:14px">Начинаем со стоматологии <em>и идём дальше</em></h2>
+    <div class="road" id="roadmap">
+      <div class="road-line"><i id="roadFill"></i></div>
+      <div class="stage"><b>Открытие - первыми</b><div class="steps">
+        <a class="step" href="stomatologiya/"><img src="assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Круглосуточно, от боли до имплантов</p></div></a>
+        <a class="step" href="kt/"><img src="assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><p>За соседней дверью от врача</p></div></a>
+      </div></div>
+      <div class="stage"><b>Следующий этап</b><div class="steps">
+        <a class="step" href="ginekologiya/"><img src="assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><p>С экспертным оборудованием</p></div></a>
+        <a class="step" href="urologiya/"><img src="assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><p>Приём без долгого ожидания</p></div></a>
+        <a class="step" href="uzi/"><img src="assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ и анализы</h3><p>Своя лаборатория</p></div></a>
+      </div></div>
+      <div class="stage"><b>В планах</b><div class="steps">
+        <a class="step" href="hirurgiya/"><img src="assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><p>Своя операционная</p></div></a>
+        <a class="step" href="proktologiya/"><img src="assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><p>Деликатно, без очередей</p></div></a>
+      </div></div>
+    </div>
   </div>
 </section>
 
@@ -169,20 +216,42 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <div><a class="logo" href="index.html">рядом <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
+      <div><a class="logo" href="index.html">Клиника <b>24</b></a><p style="margin-top:14px">Многопрофильная клиника в Южном Бутово. Круглосуточно, без выходных.</p><p style="margin-top:10px">Лицензия: номер после выдачи на новый адрес</p></div>
       <div><h4>Направления</h4><a href="stomatologiya/">Стоматология</a><a href="kt/">КТ и рентген</a><a href="ginekologiya/">Гинекология</a><a href="urologiya/">Урология</a><a href="uzi/">УЗИ</a><a href="laboratoriya/">Анализы</a></div>
       <div><h4>Статьи</h4><a href="stati/bolit-zub-nochyu/">Болит зуб ночью</a><a href="stati/kt-pered-implantom/">Зачем делать КТ перед имплантом</a><a href="stati/rebenok-bolit-zub/">У ребёнка болит зуб</a><a href="stati/slomalsya-zub/">Сломался зуб</a><a href="stati/">Все статьи</a></div>
-      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Telegram, MAX</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
+      <div><h4>Связь</h4><a href="#call" data-call>+7 (495) 000-00-00</a><a href="#write" data-write>Написать в чат</a><span style="display:block;padding:3px 0">Москва, Южное Бутово,<br>адрес ТЦ уточняется</span></div>
     </div>
     <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
   </div>
 </footer>
-<div class="bar">
-  <a class="btn main" href="#call" data-call>Позвонить</a>
-  <a class="btn line" href="#write" data-write>Написать</a>
+<!-- ЧАТ: круглая кнопка справа внизу. Прячется при прокрутке, возвращается через секунду после остановки.
+     Внутри демо «цифрового диспетчера 24/7»: готовые вопросы и ответы (site.js, ДИСПЕТЧЕР). -->
+<button class="chat-fab" type="button" aria-label="Написать в чат" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z"/></svg>
+</button>
+<div class="chat" role="dialog" aria-label="Диспетчер клиники" aria-hidden="true">
+  <div class="chat-head"><div><b>Диспетчер 24/7</b><span><i></i>на связи круглосуточно</span></div><button type="button" class="chat-x" aria-label="Закрыть чат"></button></div>
+  <div class="chat-body" aria-live="polite"></div>
+  <div class="chat-quick"></div>
+  <form class="chat-form"><input type="text" placeholder="Напишите вопрос" aria-label="Ваш вопрос" autocomplete="off"><button type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>
 </div>
 <script src="assets/site.js"></script>
 
+<script>
+/* ---------- ДОРОЖНАЯ КАРТА: линия идёт за центром экрана ----------
+   Пока точка старта ниже середины экрана - линия пустая. Дальше она заполняется ровно до середины экрана,
+   то есть растёт вместе с прокруткой и никогда не убегает вперёд. */
+const ЛИНИЯ_КАРТЫ = document.querySelector("#roadmap .road-line"), ЗАЛИВКА = document.getElementById("roadFill");
+const ЭТАПЫ = [...document.querySelectorAll("#roadmap .stage")];
+function дорожная_карта(){
+  const центр = innerHeight/2, л = ЛИНИЯ_КАРТЫ.getBoundingClientRect();
+  ЗАЛИВКА.style.height = Math.max(0, Math.min(л.height, центр - л.top)) + "px";
+  ЭТАПЫ.forEach(э=>э.classList.toggle("lit", э.getBoundingClientRect().top + 10 <= центр));
+}
+addEventListener("scroll", дорожная_карта, {passive:true});
+addEventListener("resize", дорожная_карта);
+дорожная_карта();
+</script>
 
 </body>
 </html>

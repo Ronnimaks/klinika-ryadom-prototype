@@ -1,4 +1,4 @@
-Рядом 24 - многопрофильная клиника в Южном Бутово, круглосуточно
+Клиника 24 - многопрофильная клиника в Южном Бутово, круглосуточно
 Клиника 24 часа у метро в Южном Бутово: стоматология, КТ на месте, скоро гинекология, урология, УЗИ и анализы.
 <style>
 /* ГЛАВНАЯ СТРАНИЦА КЛИНИКИ: коротко о клинике, направления, ночью, статьи, контакты */
@@ -35,11 +35,32 @@
 .pts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--mute)}
 .pts b{color:var(--ink);font-weight:500}
 
+/* ---------- ДОРОЖНАЯ КАРТА (для показа Давиду): линия сверху вниз ----------
+   Линия заполняется ровно до середины экрана: доскроллил точку старта до центра - линия пошла.
+   Этап загорается, когда его точка доходит до центра экрана. */
+.road{position:relative;margin-top:56px;padding-left:46px}
+.road-line{position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.road-line i{position:absolute;left:0;top:0;width:2px;height:0;background:var(--lamp);box-shadow:0 0 12px color-mix(in srgb,var(--lamp) 60%,transparent)}
+.stage{position:relative;padding-bottom:clamp(40px,6vw,72px)}
+.stage:last-child{padding-bottom:0}
+.stage::before{content:"";position:absolute;left:-46px;top:0;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);background:var(--bg2);transition:border-color .4s,background .4s,box-shadow .4s}
+.stage.lit::before{border-color:var(--lamp);background:var(--lamp);box-shadow:0 0 0 6px color-mix(in srgb,var(--lamp) 18%,transparent)}
+.stage>b{display:block;font:500 12px/20px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);transition:color .4s}
+.stage.lit>b{color:var(--lamp)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:14px;align-items:center;text-decoration:none;padding:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent);transition:border-color .3s,transform .3s,opacity .5s}
+.step:hover{border-color:var(--lamp);transform:translateX(4px)}
+.step img{width:72px;height:72px;object-fit:cover;display:block;filter:grayscale(.7) brightness(.6);transition:filter .5s}
+.stage.lit .step img,.step:hover img{filter:none}
+.step h3{font-size:20px}
+.step p{font-size:13.5px;color:var(--mute);margin-top:2px}
+
 .form{display:grid;gap:10px;margin-top:26px;max-width:460px}
 .form input{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:3px;padding:14px 16px}
 .form input:focus{border-color:var(--lamp);outline:none}
 @media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plus{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:720px){.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
+@media (max-width:1040px){.steps{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:720px){.road{padding-left:38px}.stage::before{left:-38px}.night2{grid-template-columns:minmax(0,1fr)}.tile.big{grid-column:span 2;aspect-ratio:1/1}.m-hero .bgimg{background-position:72% 40%}}
 </style>
 <main>
 <!-- ========== ПЕРВЫЙ ЭКРАН: клиника и её преимущества ========== -->
@@ -48,8 +69,8 @@
   <div class="wrap">
     <span class="tag">Южное Бутово · второй этаж ТЦ · у метро</span>
     <h1 style="margin-top:18px">Клиника у дома. <em>Открыта 24 часа.</em></h1>
-    <p class="lead">Многопрофильная клиника: начинаем со стоматологии и КТ, следом гинекология, урология, УЗИ и анализы. Приходите без записи, <span class="acc">даже ночью</span>.</p>
-    <div class="acts"><a class="btn main" href="#call" data-call>Позвонить</a><a class="btn line" href="#book" data-book>Записаться</a><a class="btn line" href="#write" data-write>Написать в чат</a></div>
+    <p class="lead">Лечим зубы и делаем снимок КТ в одном месте, у метро. Приходите без записи, <span class="acc">даже ночью</span>.</p>
+    <div class="acts"><a class="btn main" href="#book" data-book>Записаться</a></div>
     <div class="plus">
       <div><b>Стоматология 24/7</b><span>Снимем боль в любое время</span></div>
       <div><b>КТ на месте</b><span>Снимок за дверью от врача</span></div>
@@ -98,6 +119,31 @@
 <!-- ========== СТАТЬИ: лента, каждая статья - своя страница ========== -->
 {{ЛЕНТА_СТАТЕЙ}}
 
+<!-- ========== ДОРОЖНАЯ КАРТА: как растёт клиника (показ Давиду) ========== -->
+<section id="road" class="bgphoto" style="background:var(--bg2)">
+  <div class="bgimg" style="background-image:url({{К}}assets/img/bg_road.jpg)"></div>
+  <div class="wrap">
+    <span class="tag">Как растёт клиника</span>
+    <h2 style="margin-top:14px">Начинаем со стоматологии <em>и идём дальше</em></h2>
+    <div class="road" id="roadmap">
+      <div class="road-line"><i id="roadFill"></i></div>
+      <div class="stage"><b>Открытие - первыми</b><div class="steps">
+        <a class="step" href="{{К}}stomatologiya/"><img src="{{К}}assets/img/dir_stom.jpg" alt=""><div><h3>Стоматология</h3><p>Круглосуточно, от боли до имплантов</p></div></a>
+        <a class="step" href="{{К}}kt/"><img src="{{К}}assets/img/dir_kt.jpg" alt=""><div><h3>КТ и рентген</h3><p>За соседней дверью от врача</p></div></a>
+      </div></div>
+      <div class="stage"><b>Следующий этап</b><div class="steps">
+        <a class="step" href="{{К}}ginekologiya/"><img src="{{К}}assets/img/dir_gyn.jpg" alt=""><div><h3>Гинекология</h3><p>С экспертным оборудованием</p></div></a>
+        <a class="step" href="{{К}}urologiya/"><img src="{{К}}assets/img/dir_uro.jpg" alt=""><div><h3>Урология</h3><p>Приём без долгого ожидания</p></div></a>
+        <a class="step" href="{{К}}uzi/"><img src="{{К}}assets/img/dir_uzi.jpg" alt=""><div><h3>УЗИ и анализы</h3><p>Своя лаборатория</p></div></a>
+      </div></div>
+      <div class="stage"><b>В планах</b><div class="steps">
+        <a class="step" href="{{К}}hirurgiya/"><img src="{{К}}assets/img/dir_hir.jpg" alt=""><div><h3>Хирургия</h3><p>Своя операционная</p></div></a>
+        <a class="step" href="{{К}}proktologiya/"><img src="{{К}}assets/img/dir_proct.jpg" alt=""><div><h3>Проктология</h3><p>Деликатно, без очередей</p></div></a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== КОНТАКТЫ И КАРТА ========== -->
 <section id="contacts" style="background:var(--bg2)">
   <div class="wrap two">
@@ -121,3 +167,18 @@
 </section>
 </main>
 <!--СКРИПТ-->
+<script>
+/* ---------- ДОРОЖНАЯ КАРТА: линия идёт за центром экрана ----------
+   Пока точка старта ниже середины экрана - линия пустая. Дальше она заполняется ровно до середины экрана,
+   то есть растёт вместе с прокруткой и никогда не убегает вперёд. */
+const ЛИНИЯ_КАРТЫ = document.querySelector("#roadmap .road-line"), ЗАЛИВКА = document.getElementById("roadFill");
+const ЭТАПЫ = [...document.querySelectorAll("#roadmap .stage")];
+function дорожная_карта(){
+  const центр = innerHeight/2, л = ЛИНИЯ_КАРТЫ.getBoundingClientRect();
+  ЗАЛИВКА.style.height = Math.max(0, Math.min(л.height, центр - л.top)) + "px";
+  ЭТАПЫ.forEach(э=>э.classList.toggle("lit", э.getBoundingClientRect().top + 10 <= центр));
+}
+addEventListener("scroll", дорожная_карта, {passive:true});
+addEventListener("resize", дорожная_карта);
+дорожная_карта();
+</script>
