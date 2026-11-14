@@ -1,0 +1,124 @@
+Медосмотры и диспансеризация сотрудников для компаний - Индивита
+Медицинские услуги для юрлиц: медосмотры, диспансеризация, медкнижки, вакцинация, выездные осмотры, телемедицина для водителей. Тендеры и прямые договоры.
+<style>
+/* СТРАНИЦА «ЮРЛИЦАМ»: то, чем Индивита занимается сейчас - медицина для компаний.
+   Факты только со встречи с Давидом (11.2026) и со старого сайта klinikaindivita.ru. Цифр и клиентов не выдумывать. */
+.b-hero{min-height:min(78vh,760px);display:flex;align-items:flex-end;padding-block:clamp(60px,8vw,110px) clamp(40px,5vw,70px)}
+.b-hero::before{background:linear-gradient(90deg,rgba(10,21,23,.96) 0%,rgba(10,21,23,.8) 50%,rgba(10,21,23,.45) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)!important}
+.b-hero h1{font-size:clamp(42px,5.6vw,86px);line-height:.98;font-weight:200;max-width:12em}
+.b-hero .lead{margin-top:22px;color:#C9D5D2;max-width:50ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line)}
+.facts div{padding:18px 18px 0 0}
+.facts b{display:block;font:300 clamp(19px,1.7vw,24px)/1.2 var(--display);color:var(--lamp)}
+.facts span{display:block;color:var(--mute);font-size:14.5px;margin-top:6px}
+
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.svc div{border:1px solid var(--line);padding:26px 24px 28px;background:color-mix(in srgb,var(--bg2) 70%,transparent);transition:border-color .3s}
+.svc div:hover{border-color:var(--lamp)}
+.svc i{display:block;font:300 15px var(--display);color:var(--lamp);font-style:normal}
+.svc h3{font-size:clamp(21px,1.9vw,26px);margin-top:14px;line-height:1.15}
+.svc p{color:var(--mute);margin-top:10px;font-size:15.5px}
+
+.flow{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px;border-top:1px solid var(--line);counter-reset:f}
+.flow li{counter-increment:f;padding:22px 0;border-bottom:1px solid var(--line)}
+.flow li::before{content:"0" counter(f);display:block;font:300 15px var(--display);color:var(--lamp)}
+.flow b{display:block;font:300 22px/1.25 var(--display);margin-top:10px}
+.flow span{display:block;color:var(--mute);font-size:15px;margin-top:8px}
+
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.case .ph{aspect-ratio:4/3;overflow:hidden}
+.case .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.case .pts{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid var(--line)}
+.case .pts li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--mute)}
+.case .pts b{color:var(--ink);font-weight:500}
+
+.form{display:grid;gap:10px;margin-top:26px;max-width:460px}
+.form input{font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:3px;padding:14px 16px}
+.form input:focus{border-color:var(--lamp);outline:none}
+@media (max-width:1040px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.svc,.flow,.case,.facts{grid-template-columns:minmax(0,1fr)}}
+</style>
+<main>
+<!-- ========== ПЕРВЫЙ ЭКРАН: медицина для компаний ========== -->
+<section class="bgphoto b-hero">
+  <div class="bgimg" style="background-image:url({{К}}assets/img/bg_road.jpg)"></div>
+  <div class="wrap">
+    <p class="crumbs" style="padding:0 0 26px"><a href="{{К}}index.html">Главная</a> / Юрлицам</p>
+    <span class="tag">Для компаний</span>
+    <h1 style="margin-top:18px">Здоровье сотрудников <em>под ключ</em></h1>
+    <p class="lead">Медосмотры, диспансеризация, медкнижки и вакцинация. В клинике или выездом к вам: <span class="acc">приезжаем со своими передвижными комплексами</span>.</p>
+    <div class="acts" style="margin-top:34px"><a class="btn main" href="#zayavka">Оставить заявку</a></div>
+    <div class="facts">
+      <div><b>Тендеры и договоры</b><span>Госзакупки, коммерческие тендеры, прямые договоры</span></div>
+      <div><b>Выезд к вам</b><span>Передвижные медицинские комплексы</span></div>
+      <div><b>Москва, область, Петербург</b><span>Телемедицина для водителей - по всей России</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== УСЛУГИ ДЛЯ КОМПАНИЙ ========== -->
+<section id="uslugi">
+  <div class="wrap">
+    <span class="tag">Что делаем</span>
+    <h2 style="margin-top:14px">Всё, что требуется <em>по закону и по делу</em></h2>
+    <div class="svc">
+      <div class="rise"><i>01</i><h3>Предварительные и периодические медосмотры</h3><p>По приказу 29н: при приёме на работу и по графику. Заключения для отдела кадров.</p></div>
+      <div class="rise"><i>02</i><h3>Диспансеризация сотрудников</h3><p>Весь коллектив за короткий срок, без потери рабочих дней.</p></div>
+      <div class="rise"><i>03</i><h3>Медицинские книжки</h3><p>Оформление и продление для сотрудников.</p></div>
+      <div class="rise"><i>04</i><h3>Вакцинация</h3><p>Плановая и срочная, в том числе по требованию Роспотребнадзора.</p></div>
+      <div class="rise"><i>05</i><h3>Выездные осмотры</h3><p>Передвижные комплексы приезжают на склад, завод или в офис.</p></div>
+      <div class="rise"><i>06</i><h3>Телемедицина для водителей</h3><p>Дистанционно, по всей России.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== КАК РАБОТАЕМ ========== -->
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="tag">Как работаем</span>
+    <h2 style="margin-top:14px">От заявки <em>до отчёта</em></h2>
+    <ol class="flow">
+      <li><b>Заявка или тендер</b><span>Участвуем в госзакупках и коммерческих тендерах, работаем и по прямому договору</span></li>
+      <li><b>Договор и график</b><span>Согласуем список сотрудников, даты и место</span></li>
+      <li><b>Осмотры</b><span>В клинике или выездом к вам, <span class="acc">со своими комплексами</span></span></li>
+      <li><b>Документы</b><span>Заключения и отчёт для компании</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== ПРИМЕР ИЗ ПРАКТИКИ (со встречи с Давидом) ========== -->
+<section class="bgphoto">
+  <div class="bgimg" style="background-image:url({{К}}assets/img/bg_night.jpg)"></div>
+  <div class="wrap case">
+    <div class="ph rise"><img src="{{К}}assets/img/dir_lab.jpg" alt="" loading="lazy"></div>
+    <div>
+      <span class="tag">Из практики</span>
+      <h2 style="margin-top:14px">Срочная вакцинация <em>на складе</em></h2>
+      <ul class="pts">
+        <li><b>Ситуация.</b> На крупном складе выявили инфекцию у сотрудника, Роспотребнадзор потребовал срочно привить всех, кто был в контакте</li>
+        <li><b>Что сделали.</b> Выездная бригада приехала на склад с передвижными комплексами</li>
+        <li><b>Результат.</b> <span class="acc">Задачу закрыли за 8 дней</span>, склад продолжал работать</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ЗАЯВКА ========== -->
+<section id="zayavka">
+  <div class="wrap two">
+    <div>
+      <span class="tag">Заявка</span>
+      <h2 style="margin-top:14px">Рассчитаем <em>под вашу компанию</em></h2>
+      <p class="lead" style="margin-top:18px">Напишите, сколько сотрудников и что нужно. Менеджер по работе с компаниями свяжется, пришлёт расчёт и договор.</p>
+    </div>
+    <div class="form">
+      <input type="text" placeholder="Компания" aria-label="Компания">
+      <input type="text" placeholder="Как к вам обращаться" aria-label="Имя">
+      <input type="tel" placeholder="Телефон или почта" aria-label="Телефон или почта">
+      <input type="text" placeholder="Сколько сотрудников и что нужно" aria-label="Задача">
+      <a class="btn main" href="#lead" data-lead>Отправить заявку</a>
+    </div>
+  </div>
+</section>
+</main>
+<!--СКРИПТ-->

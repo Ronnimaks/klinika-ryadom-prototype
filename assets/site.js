@@ -31,7 +31,7 @@ document.querySelectorAll(".mobile-menu a").forEach(с=>с.addEventListener("cli
 /* ---------- Кнопки звонка и записи: в прототипе только подсказка ---------- */
 let таймер_подсказки;
 document.addEventListener("click",e=>{
-  const к = e.target.closest("[data-call],[data-write],[data-book],[data-map]");
+  const к = e.target.closest("[data-call],[data-write],[data-book],[data-map],[data-lead]");
   if(!к) return;
   e.preventDefault();
   if(к.hasAttribute("data-write")){ открыть_чат(); return; }   // «Написать» везде открывает чат
@@ -40,6 +40,7 @@ document.addEventListener("click",e=>{
   п.className="toast";
   п.textContent = к.hasAttribute("data-call") ? "Здесь сразу начнётся звонок в клинику"
                : к.hasAttribute("data-book") ? "Здесь откроется запись: выбор врача и времени"
+               : к.hasAttribute("data-lead") ? "Заявка уйдёт менеджеру по работе с компаниями"
                : "Здесь откроется маршрут в Яндекс Картах";
   document.body.append(п);
   clearTimeout(таймер_подсказки); таймер_подсказки=setTimeout(()=>п.remove(),2400);
